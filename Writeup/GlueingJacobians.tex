@@ -6,6 +6,7 @@
 \usepackage{amsxtra}
 \usepackage{mathrsfs}
 %\usepackage{enumerate}
+\usepackage[inline, shortlabels]{enumitem}
 \usepackage{comment}
 \usepackage{graphicx}
 %\usepackage[all]{xy}
@@ -15,38 +16,35 @@
 \usepackage{cancel}
 \usepackage{fullpage}
 \usepackage{stmaryrd}
-\usepackage{wasysym}
 \usepackage{subcaption}
-
-\usepackage[inline, shortlabels]{enumitem}
 %\usepackage{calc}
 %\usepackage{tikz}
 %\usetikzlibrary{arrows,calc,automata,shadows,backgrounds,positioning,intersections,fadings,decorations.pathreplacing,shapes,snakes, matrix}
 \usepackage{tikz-cd}
 
-\usepackage{listings}
-\usepackage{color}
-
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\lstset{frame=tb,
-  language=Python,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\small\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
-}
+%\usepackage{listings}
+%\usepackage{color}
+%
+%\definecolor{dkgreen}{rgb}{0,0.6,0}
+%\definecolor{gray}{rgb}{0.5,0.5,0.5}
+%\definecolor{mauve}{rgb}{0.58,0,0.82}
+%
+%\lstset{frame=tb,
+%  language=Python,
+%  aboveskip=3mm,
+%  belowskip=3mm,
+%  showstringspaces=false,
+%  columns=flexible,
+%  basicstyle={\small\ttfamily},
+%  numbers=none,
+%  numberstyle=\tiny\color{gray},
+%  keywordstyle=\color{blue},
+%  commentstyle=\color{dkgreen},
+%  stringstyle=\color{mauve},
+%  breaklines=true,
+%  breakatwhitespace=true,
+%  tabsize=3
+%}
 
 \setlength{\hfuzz}{4pt}
 
@@ -60,21 +58,6 @@
 \newtheorem{claim}[thm]{Claim}
 \newtheorem{example} [thm] {Example}
 \newtheorem{rem} [thm] {Remark}
-
-\newenvironment{problab}[1]
-{\noindent\textbf{Problem #1}.}
-{\vskip 6pt}
-
-\theoremstyle{remark}
-\newtheorem*{soln}{Solution}
-
-\newenvironment{enumalph}
-{\begin{enumerate}\renewcommand{\labelenumi}{\textnormal{(\alph{enumi})}}}
-{\end{enumerate}}
-
-\newenvironment{enumroman}
-{\begin{enumerate}\renewcommand{\labelenumi}{\textnormal{(\roman{enumi})}}}
-{\end{enumerate}}
 
 \newcommand{\C}{\mathbb C}
 \newcommand{\D}{\mathbf D}
@@ -93,11 +76,6 @@
 \newcommand{\m}{\mathfrak m}
 \renewcommand{\SS}{\mathbb S}
 
-\newcommand{\Cscr}{\mathscr C}
-\newcommand{\Dscr}{\mathscr D}
-\newcommand{\Fscr}{\mathscr F}
-\newcommand{\Gscr}{\mathscr G}
-
 \renewcommand{\L}{\mathcal{L}}
 
 \renewcommand{\Re}{\text{Re}}
@@ -111,15 +89,10 @@
 \newcommand{\q}{\mathfrak q}
 \newcommand{\normal}{\trianglelefteq}
 
-\newcommand{\Cov}{\text{Cov}}
 \newcommand{\charac}{\text{char}}
 \newcommand{\la}{\langle}
 \newcommand{\ra}{\rangle}
 \newcommand{\wt}{\widetilde}
-
-\newcommand{\Auniv}{{A_\text{univ}}}
-\newcommand{\Runiv}{{R_\text{univ}}}
-\DeclareMathOperator{\gdeg}{gdeg}
 
 \newcommand{\Kbar}{\overline{K}}
 
@@ -127,31 +100,27 @@
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\img}{img}
-\DeclareMathOperator{\ann}{ann}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Mor}{Mor}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Gal}{Gal}
-\DeclareMathOperator{\Spl}{Spl}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\Ob}{Ob}
 \DeclareMathOperator{\genus}{genus}
-\DeclareMathOperator{\ad}{ad}
-\DeclareMathOperator{\GL}{GL}
-\DeclareMathOperator{\SL}{SL}
-\DeclareMathOperator{\SO}{SO}
-\DeclareMathOperator{\Sp}{Sp}
+%\DeclareMathOperator{\GL}{GL}
+%\DeclareMathOperator{\SL}{SL}
+%\DeclareMathOperator{\SO}{SO}
+%\DeclareMathOperator{\Sp}{Sp}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Frac}{Frac}
 \DeclareMathOperator{\Div}{Div}
 \DeclareMathOperator{\Pic}{Pic}
 \DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\wasy}{\wasylozenge}
+%\DeclareMathOperator{\wasy}{\wasylozenge}
 \DeclareMathOperator{\Frob}{Frob}
 \DeclareMathOperator{\Nm}{Nm}
 \DeclareMathOperator{\rank}{rank}
