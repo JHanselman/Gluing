@@ -1,6 +1,8 @@
 \contentsline {section}{\tocsection {}{I}{Introduction}}{1}
 \contentsline {section}{\tocsection {}{II}{Background}}{1}
-\contentsline {section}{\tocsection {}{III}{Overview of method}}{1}
-\contentsline {section}{\tocsection {}{IV}{Applications}}{2}
+\contentsline {subsection}{\tocsubsection {}{II.1}{Representing divisors}}{1}
+\contentsline {subsection}{\tocsubsection {}{II.2}{Embedding the Kummer variety}}{1}
+\contentsline {section}{\tocsection {}{III}{Overview of method}}{2}
+\contentsline {section}{\tocsection {}{IV}{Applications}}{3}
 \contentsline {section}{\tocsection {}{V}{Examples}}{3}
 \contentsline {section}{\tocsection {}{}{References}}{3}

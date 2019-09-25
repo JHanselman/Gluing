@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 SEP 2019 17:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 SEP 2019 19:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -718,35 +718,36 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 9.37807pt on input line 166.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 7.29405pt on input line 166.
-LaTeX Font Info:    Try loading font information for U+fplmbb on input line 181
+LaTeX Font Info:    Try loading font information for U+fplmbb on input line 185
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
-) [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./GlueingJacobians.bbl [2]) [3] (./GlueingJacobians.aux) ) 
+) [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+
+(./GlueingJacobians.bbl) [3] (./GlueingJacobians.aux) ) 
 Here is how much of TeX's memory you used:
  15742 strings out of 493089
  312651 string characters out of 6134842
- 349856 words of memory out of 5000000
+ 350863 words of memory out of 5000000
  18711 multiletter control sequences out of 15000+600000
  30457 words of font info for 97 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  61i,15n,82p,801b,1015s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/
-2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/font
-s/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
-pe1/public/mathpazo/fplmr.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/mathpazo/fplmri.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
-c/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/u
-rw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/pala
-tino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
-lri8a.pfb>
-Output written on GlueingJacobians.pdf (3 pages, 111890 bytes).
+{/usr/local/texlive/2015
+/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
+public/mathpazo/fplmr.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/mathpazo/fplmri.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/p
+alatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino
+/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8
+a.pfb>
+Output written on GlueingJacobians.pdf (3 pages, 115563 bytes).
 PDF statistics:
  62 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream
