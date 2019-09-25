@@ -1,0 +1,254 @@
+\documentclass[reqno, 12pt]{amsart}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsxtra}
+\usepackage{mathrsfs}
+%\usepackage{enumerate}
+\usepackage{comment}
+\usepackage{graphicx}
+%\usepackage[all]{xy}
+\usepackage{placeins}
+\usepackage{multicol}
+\usepackage{bbm}
+\usepackage{cancel}
+\usepackage{fullpage}
+\usepackage{stmaryrd}
+\usepackage{wasysym}
+\usepackage{subcaption}
+
+\usepackage[inline, shortlabels]{enumitem}
+%\usepackage{calc}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,calc,automata,shadows,backgrounds,positioning,intersections,fadings,decorations.pathreplacing,shapes,snakes, matrix}
+\usepackage{tikz-cd}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\setlength{\hfuzz}{4pt}
+
+\newtheorem{thm}{Theorem}%[section]
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}  
+\newtheorem{defn} [thm] {Definition} 
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{example} [thm] {Example}
+\newtheorem{rem} [thm] {Remark}
+
+\newenvironment{problab}[1]
+{\noindent\textbf{Problem #1}.}
+{\vskip 6pt}
+
+\theoremstyle{remark}
+\newtheorem*{soln}{Solution}
+
+\newenvironment{enumalph}
+{\begin{enumerate}\renewcommand{\labelenumi}{\textnormal{(\alph{enumi})}}}
+{\end{enumerate}}
+
+\newenvironment{enumroman}
+{\begin{enumerate}\renewcommand{\labelenumi}{\textnormal{(\roman{enumi})}}}
+{\end{enumerate}}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\mathbf D}
+\renewcommand{\H}{\mathbf H}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb T}
+\renewcommand{\P}{\mathbb P}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\M}{\mathfrak M}
+\newcommand{\A}{\mathbb A}
+\newcommand{\V}{\mathbb V}
+\newcommand{\I}{\mathbb I}
+\newcommand{\m}{\mathfrak m}
+\renewcommand{\SS}{\mathbb S}
+
+\newcommand{\Cscr}{\mathscr C}
+\newcommand{\Dscr}{\mathscr D}
+\newcommand{\Fscr}{\mathscr F}
+\newcommand{\Gscr}{\mathscr G}
+
+\renewcommand{\L}{\mathcal{L}}
+
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+
+\newcommand{\gl}{\mathfrak gl}
+\renewcommand{\sl}{\mathfrak sl}
+\newcommand{\s}{\mathfrak s}
+\renewcommand{\a}{\mathfrak a}
+\newcommand{\p}{\mathfrak p}
+\newcommand{\q}{\mathfrak q}
+\newcommand{\normal}{\trianglelefteq}
+
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\charac}{\text{char}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\wt}{\widetilde}
+
+\newcommand{\Auniv}{{A_\text{univ}}}
+\newcommand{\Runiv}{{R_\text{univ}}}
+\DeclareMathOperator{\gdeg}{gdeg}
+
+\newcommand{\Kbar}{\overline{K}}
+
+\renewcommand{\div}{\text{div}}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\ann}{ann}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Spl}{Spl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\genus}{genus}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\wasy}{\wasylozenge}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\Nm}{Nm}
+\DeclareMathOperator{\rank}{rank}
+
+\DeclareMathOperator{\trd}{trd}
+\DeclareMathOperator{\nrd}{nrd}
+
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\res}{res}
+
+\DeclareMathOperator{\id}{id}
+
+\newcommand{\sss}[1]{{\color{blue} [#1]}}
+\newcommand{\jh}[1]{{\color{green} [#1]}}
+
+
+%\newcommand{\res}[3]{\left(\frac{#1}{#2} \right)_{#3}}
+
+\renewcommand{\thesection}{\Roman{section}} 
+
+\usepackage{mathpazo}
+%\usepackage{pxfonts}
+
+\everymath{\displaystyle}
+\tikzset{commutative diagrams/.cd, arrow style = tikz, diagrams = {>=latex}}
+
+
+\begin{document}
+
+\title{Glueing Jacobians}
+%\author{Alex Levin and Sam Schiavone}
+\author{Jeroen Hanselman, Sam Schiavone, and Jeroen Sijsling}
+%\date{30 June 2017}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+In \cite{FreyKani}
+%Frey and Kani's paper \textit{Curves of genus 2 covering elliptic curves and an arithmetical application},
+the authors describe a method for glueing two elliptic curves $E_1$ and $E_2$ along their torsion subgroups to produce a genus $2$ curve that covers both of them. In this article, we extend this method to genus $3$: we glue a genus $1$ curve $X_1$ to the Jacobian variety of a genus $2$ curve $X_2$. This produces an abelian $3$-fold which, since all abelian $3$-folds are principally polarized, is the Jacobian variety of a genus $3$ curve $X_3$. We determine explicit equations for $X_3$, given the data of blah. We have implemented this method in \textsf{Magma}, and conclude the paper with several examples.
+
+\sss{Other papers to mention? Howe? Howe, Leprovost, Poonen? Broker, Lauter, Stevenhagen, etc.?}
+
+\section{Background}
+
+Encoding divisors as polynomials as in Mumford and Cantor. Describe construction of the Kummer as in Mueller.
+
+\section{Overview of method}
+
+Our construction proceeds as follows. We take as input an elliptic curve $X_1$ and a genus $2$ curve $X_2$ over a number field $K$ \sss{or more genenerally, any field?} given in Weierstrass form
+$$
+X_1: y^2 + u(x) y = v(x) \qquad
+X_2: y^2 + h(x) y = f(x) \, .
+$$
+Letting $J_2$ be the Jacobian variety of $X_2$, then $J_2$ is an abelian surface with $16$ $2$-torsion points. The Kummer variety $K_2$ of $X_2$ is obtained by forming the quotient of $J_2$ by the negation map $[-1]$. This quotient map $\pi : J_2 \to K_2$ is injective on the $2$-torsion points of $J_2$, whose images are the singular points of $K_2$. \sss{Nodes, I guess?} Using  the explicit embedding given in \cite{Mueller} (which in turn is a generalization of \cite{CasselsFlynn}), we can realize $K_2$ as a quartic surface in $\P^3$.
+
+Fix two nodes $T_1, T_2$ of $K_2$. Consider the pencil of planes $\mathcal{H} = \{H_\mu : \mu \in \P^1\}$ passing through $T_1$ and $T_2$. The intersection of a plane $H_\mu \in \mathcal{H}$ with $K_2$ is a quartic plane curve $C_\mu$ with two nodes. By the usual degree-genus formula for plane curves, $C_\mu$ has genus $1$ for each $\mu \in \P^1$. We will endow $C_\mu$ with the structure of an elliptic curve and compute its $j$-invariant as a function of $\mu$.
+
+To a point $Q \in C_\mu$ we associate the line $\ell_Q$ passing through $T_1$ and $Q$. The association $Q \mapsto \ell_Q$ defines a degree $2$ map $C_\mu \to \P^1$ ramified at 4 points. Computing the cross-ratio of these 4 points yields the $\lambda$-invariant of $C_\mu$, allowing us to find a Legendre model $y^2 = x(x-1)(x-\lambda)$ for $C_\mu$. We can then compute the $j$-invariant of $C_\mu$ using the standard formula
+$$
+j = 2^8 \frac{(\lambda^2 - \lambda + 1)^3}{\lambda^2 (\lambda-1)^2}  \, .
+$$
+Note that computing the $\lambda$-invariant of $C_\mu$ not only endows $C_\mu$ with the structure of an elliptic curve, but also with level $2$ structure: the Legendre model $E_\text{Leg}: y^2 = x(x-1)(x-\lambda)$ comes equipped with the basis $\{(0,0), (1,0)\}$ for $E_\text{Leg}[2]$, and we may pull back this basis along the isomorphism $C_\mu \overset{\sim}{\to} E_\text{Leg}$ to obtain a basis for $C_\mu[2]$.
+\begin{lem}
+The composite map
+%\begin{align*}
+%\P^1 &\to \mathcal{M}_1 \to X(2) \to X(1)\\
+%
+%\end{align*}
+$$
+\begin{tikzcd}[row sep = small]
+\varphi: \P^1 \ar[]{r}{} & \mathcal{M}_1 \ar[]{r}{} & X(2) \ar[]{r}{} & X(1)\\ 
+\mu \ar[mapsto]{r}{} & C_\mu \ar[mapsto]{r}{} & \lambda(C_\mu) \ar[mapsto]{r}{} & j(\lambda(C_\mu))
+\end{tikzcd}
+$$
+has degree $12$.
+\end{lem}
+
+\begin{proof}
+By the classical theory of modular functions, the map $X(2) \to X(1)$, $\lambda \mapsto j(\lambda)$ has degree $6$, corresponding to the $6$ permutations of $0, 1, \infty$ acted on by $S_3$. As the map $\mu \mapsto C_\mu$ has degree $1$, it suffices to show that the map $\mathcal{M}_1 \to X(2)$ has degree $2$. \sss{I think this just follows from the fact that we could've chosen to the other node and taken lines through $T_2$ and $Q$ to obtain a map to $\P^1$. I guess we have to show that this would produce the same $\lambda$...}
+\end{proof}
+
+Thus the composite map in the above lemma is a rational function of degree $12$ in $\mu$. Let $j_1 = j(X_1)$. In order to find a value of $\mu$ that yields an elliptic curve $C_\mu$ isomorphic to our original curve $X_1$, we solve the equation $\varphi(\mu) = j_1$. The solutions $\mu$ to this equation may not lie in the ground field, so it may be necessary to base change our curve to an algebraic extension. \sss{I think in all the examples so far we've only needed quadratic extensions of the base field...} \sss{One more interesting note: I think in all the examples we've done so far, $\varphi(\mu) - j_1$ has an interesting factorization. The numerator is a product of quadratics, and the denominator is a product of linear factors squared. Is this expected?}
+
+\section{Applications}
+Constructing abelian three-folds with interesting torsion?
+
+\section{Examples}
+
+%\nocite{*} % use this to have all references listed, not just those cited
+%\bibliographystyle{amsplain}
+\bibliographystyle{alpha}
+%\addcontentsline{toc}{chapter}{References}
+\bibliography{references}
+
+
+\end{document} 

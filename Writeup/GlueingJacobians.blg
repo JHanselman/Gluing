@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: GlueingJacobians.aux
+The style file: alpha.bst
+Database file #1: references.bib
+You've used 3 entries,
+            2543 wiz_defined-function locations,
+            585 strings with 5041 characters,
+and the built_in function-call counts, 1268 in all, are:
+= -- 128
+> -- 46
+< -- 4
++ -- 14
+- -- 14
+* -- 89
+:= -- 203
+add.period$ -- 10
+call.type$ -- 3
+change.case$ -- 16
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 59
+empty$ -- 99
+format.name$ -- 18
+if$ -- 267
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 4
+newline$ -- 18
+num.names$ -- 9
+pop$ -- 18
+preamble$ -- 1
+purify$ -- 20
+quote$ -- 0
+skip$ -- 48
+stack$ -- 0
+substring$ -- 72
+swap$ -- 16
+text.length$ -- 4
+text.prefix$ -- 1
+top$ -- 0
+type$ -- 20
+warning$ -- 0
+while$ -- 13
+width$ -- 4
+write$ -- 43

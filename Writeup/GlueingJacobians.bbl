@@ -1,0 +1,21 @@
+\begin{thebibliography}{M{\"{u}}l10}
+
+\bibitem[CF96]{CasselsFlynn}
+J.~W.~S. Cassels and E.~V. Flynn.
+\newblock {\em Prolegomena to a middlebrow arithmetic of curves of genus
+  {$2$}}, volume 230 of {\em London Mathematical Society Lecture Note Series}.
+\newblock Cambridge University Press, Cambridge, 1996.
+
+\bibitem[FK91]{FreyKani}
+Gerhard Frey and Ernst Kani.
+\newblock Curves of genus {$2$} covering elliptic curves and an arithmetical
+  application.
+\newblock In {\em Arithmetic algebraic geometry ({T}exel, 1989)}, volume~89 of
+  {\em Progr. Math.}, pages 153--176. Birkh\"{a}user Boston, Boston, MA, 1991.
+
+\bibitem[M{\"{u}}l10]{Mueller}
+Jan~Steffen M{\"{u}}ller.
+\newblock Explicit {K}ummer surface formulas for arbitrary characteristic.
+\newblock {\em LMS J. Comput. Math.}, 13:47--64, 2010.
+
+\end{thebibliography}
