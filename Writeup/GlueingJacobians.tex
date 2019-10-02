@@ -5,11 +5,9 @@
 \usepackage{amsmath}
 \usepackage{amsxtra}
 \usepackage{mathrsfs}
-%\usepackage{enumerate}
 \usepackage[inline, shortlabels]{enumitem}
 \usepackage{comment}
 \usepackage{graphicx}
-%\usepackage[all]{xy}
 \usepackage{placeins}
 \usepackage{multicol}
 \usepackage{bbm}
@@ -95,12 +93,15 @@
 \newcommand{\wt}{\widetilde}
 
 \newcommand{\Kbar}{\overline{K}}
+\newcommand{\kal}{k^{\mathrm{al}}}
 
 \renewcommand{\div}{\text{div}}
+\newcommand{\wh}{\widehat}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\img}{img}
 \DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Jac}{Jac}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
@@ -120,18 +121,12 @@
 \DeclareMathOperator{\Div}{Div}
 \DeclareMathOperator{\Pic}{Pic}
 \DeclareMathOperator{\supp}{supp}
-%\DeclareMathOperator{\wasy}{\wasylozenge}
 \DeclareMathOperator{\Frob}{Frob}
 \DeclareMathOperator{\Nm}{Nm}
 \DeclareMathOperator{\rank}{rank}
-
-\DeclareMathOperator{\trd}{trd}
-\DeclareMathOperator{\nrd}{nrd}
-
-\DeclareMathOperator{\Supp}{Supp}
-\DeclareMathOperator{\res}{res}
-
 \DeclareMathOperator{\id}{id}
+
+\newcommand{\whinfty}{\wh{\infty}}
 
 \newcommand{\sss}[1]{{\color{blue} [#1]}}
 \newcommand{\jh}[1]{{\color{green} [#1]}}
@@ -171,14 +166,83 @@ the authors describe a method for glueing two elliptic curves $E_1$ and $E_2$ al
 
 Encoding divisors as polynomials as in Mumford and Cantor. Describe construction of the Kummer as in Mueller.
 
+\subsection{Definitions and conventions}
+Throughout, let $k$ be a field of characteristic $\neq 2$. A \textit{hyperelliptic curve} over $k$ is a curve $C$ of genus $g \geq 2$ with a model of the form $y^2 = f(x)$, where $f \in k[x]$ has distinct roots. Then $\deg(f)$ is either $2g+1$ or $2g+2$---we call the model \textit{odd} or \textit{even} according to the parity of $\deg(f)$. Note that an odd model has the single point $\infty = (1:0:0)$ at infinity while an even model has two: letting $c$ be the leading coefficient of $f$, then the two points at infinity are $\infty = (1:\sqrt{c}:0)$ and $\infty' = (1:-\sqrt{c}:0)$. Let
+\begin{align} \label{infty}
+\wh{\infty} =
+\begin{cases}
+\infty + \infty' & \text{if $\deg(f)$ is even;}\\
+2 \infty & \text{if $\deg(f)$ is odd}.
+\end{cases}
+\end{align}
+We denote by $\iota: C \to C$ the hyperelliptic involution that maps $(x,y) \mapsto (x,-y)$.
+
 \subsection{Representing divisors}
+Let $C$ be a hyperelliptic curve, $\Div_k(C)$ be the group of $k$-divisors on $C$ \sss{define?}, $\Div^0_k(C)$ be the subgroup of divisors of degree $0$, and $\Jac(C)$ be its Jacobian variety. Denote by $\equiv$ the equivalence relation of linear equivalence on $\Div_k(C)$. We describe how points of $\Jac(C)$ can be represented as pairs of polynomials, as presented in \cite{Cantor} and \cite[\S1]{Mumford}.
+
+Given a point $P = (u,v)$ on $C$, then $\iota(P) = (u,-v)$ also lies on $C$. Since $\div(x - a) = P + \iota(P) - \wh{\infty}$, then $-P' \equiv P - \wh{\infty}$. Then each divisor $D \in \Div^0_k(C)$ is linearly equivalent to one the form \sss{TODO: fix this to make it work in the even model case, too}
+\begin{align} \label{semireduced}
+\sum_{i=1}^r P_i - r \whinfty
+\end{align}
+\sss{Again, Cantor and Mumford only consider odd models, so have $\infty$, not $\whinfty$.}
+satisfying the following conditions:
+\begin{enumerate}
+\item
+$P_i \notin \{\infty, \infty'\}$ for all $i$; and
+
+\item
+$P_j \neq \iota(P_i)$ for all $j \neq i$, i.e., at most one of $P_i$ and $\iota(P_i)$ appears.
+\end{enumerate}
+A divisor of this form is called \textit{semireduced}.
+
+Given  a semireduced divisor $D = \sum_{i=1}^r P_i - r \whinfty$, we produce a pair $(a(x), b(x))$ of polynomials. Writing $P_i = (u_i, v_i)$ for each $i$, let $a(x) = \prod_{i = 1}^r (x - u_i)$ and $b(x)$ be the unique polynomial of degree at most $r-1$ such that $b(u_i) = v_i$ for all $i$ \sss{TODO: add statement about multiplicities here}. In the case where all the $P_i$ are distinct, we can write $b$ explicitly using Lagrange interpolation as
+$$
+b(x) = \sum_{i=1}^r  v_i \prod_{j \neq i} \frac{x - u_j}{u_i - u_j} \, .
+$$
+\sss{Put some statement about a bijection between pairs of polynomials and semireduced divisors here?}
 
 \subsection{Embedding the Kummer variety}
+Let $X$ be a curve of genus $g$. Let $X^{(g)} = X^g/S_g$ be the $g^\text{th}$ symmetric power of $X$. Fixing a basepoint $P_0 \in X$, recall that the map
+\begin{align*}
+X^{(g)} &\to \Jac(X)\\
+\{P_1, \ldots, P_g\} &\mapsto [P_1] + \cdots + [P_g] - g[P_0]
+\end{align*}
+is surjective.
 
+Let
+$$
+f(x) = f_6 x^6 + f_5 x^5 + \cdots + f_1 x + f_0 \in k[x]
+$$
+be a polynomial with no repeated roots (in the algebraic closure $\kal$). Then
+$$
+X_2: y^2 = f(x)
+$$
+is a genus $2$ hyperelliptic curve over $k$.
+
+Let
+\begin{align*}
+F_0(x,u) = 2 f_0 + f_1(x+u) + 2 f_2 xu + f_3(x+u)xu + 2 f_4(xu)^2 + f_5(x+u)xu + 2 f_6 (xu)^3 \, .
+\end{align*}
+
+The image of $\kappa$ is a quartic surface given by
+$$
+K_2(\kappa_1, \kappa_2, \kappa_3) \kappa_4^2 + K_1(\kappa_1, \kappa_2, \kappa_3) \kappa_4 + K_0(\kappa_1, \kappa_2, \kappa_3) \, ,
+$$
+where
+\begin{align*}
+K_2(\kappa_1, \kappa_2, \kappa_3) &= \kappa_2^2 - 4 \kappa_1 \kappa_3\\
+K_1(\kappa_1, \kappa_2, \kappa_3) &= -4 \kappa_1^3 f_0 - 2 \kappa_1^2 \kappa_2 f_1 - 4 \kappa_1^2 \kappa_3 f_2 - 2 \kappa_1 \kappa_2 \kappa_3  f_3 - 4 \kappa_1 \kappa_3^2 f_4 -2 \kappa_2 \kappa_3^2 f_5 - 4 \kappa_3^3 f_6\\
+K_0(\kappa_1, \kappa_2, \kappa_3) &=
+-4 \kappa_1^4 f_0 f_2 + \kappa_1^4 f_1^2 - 4 \kappa_1^3 \kappa_2 f_0 f_3 - 2 \kappa_1^3 \kappa_3 f_1 f_3 - 4 \kappa_1^2 \kappa_2^2 f_0 f_4 + 4 \kappa_1^2 \kappa_2 \kappa_3 f_0 f_5\\
+	&\qquad - 4 \kappa_1^2 \kappa_2 \kappa_3 f_1 f_4 - 4 \kappa_1^2 \kappa_3^2 f_0 f_6 + 2 \kappa_1^2 \kappa_3^2 f_1 f_5 -4 \kappa_1^2 \kappa_3^2 f_2 f_4 +   \kappa_1^2 \kappa_3^2 f_3^2\\
+	&\qquad - 4 \kappa_1 \kappa_2^3 f_0 f_5 + 8 \kappa_1 \kappa_2^2 \kappa_3 f_0 f_6 - 4 \kappa_1 \kappa_2^2 \kappa_3 f_1 f_5 + 4 \kappa_1 \kappa_2 \kappa_3^2 f_1 f_6 - 4 \kappa_1 \kappa_2 \kappa_3^2 f_2 f_5\\
+	&\qquad - 2  \kappa_1 \kappa_3^3 f_3 f_5 - 4 \kappa_2^4 f_0 f_6 - 4 \kappa_2^3 \kappa_3 f_1 f_6 - 4 \kappa_2^2 \kappa_3^2 f_2  f_6 -4 \kappa_2 \kappa_3^3 f_3 f_6 - 4 \kappa_3^4 f_4 f_6\\
+	&\qquad + \kappa_3^4 f_5^2 \, .
+\end{align*}
 
 \section{Overview of method}
 
-Our construction proceeds as follows. We take as input an elliptic curve $X_1$ and a genus $2$ curve $X_2$ over a number field $K$ \sss{or more genenerally, any field?} given in Weierstrass form
+Our construction proceeds as follows. We take as input an elliptic curve $X_1$ and a genus $2$ curve $X_2$ over a number field $k$ \sss{or more genenerally, any field? characteristic $\neq 2$?} given in Weierstrass form
 $$
 X_1: y^2 + u(x) y = v(x) \qquad
 X_2: y^2 + h(x) y = f(x) \, .

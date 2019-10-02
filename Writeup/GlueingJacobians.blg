@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: GlueingJacobians.aux
 The style file: alpha.bst
 Database file #1: references.bib
-You've used 3 entries,
+You've used 5 entries,
             2543 wiz_defined-function locations,
-            585 strings with 5041 characters,
-and the built_in function-call counts, 1268 in all, are:
-= -- 128
-> -- 46
-< -- 4
-+ -- 14
-- -- 14
-* -- 89
-:= -- 203
-add.period$ -- 10
-call.type$ -- 3
-change.case$ -- 16
-chr.to.int$ -- 3
-cite$ -- 3
-duplicate$ -- 59
-empty$ -- 99
-format.name$ -- 18
-if$ -- 267
+            603 strings with 5452 characters,
+and the built_in function-call counts, 1904 in all, are:
+= -- 194
+> -- 62
+< -- 6
++ -- 18
+- -- 18
+* -- 129
+:= -- 308
+add.period$ -- 18
+call.type$ -- 5
+change.case$ -- 25
+chr.to.int$ -- 5
+cite$ -- 5
+duplicate$ -- 90
+empty$ -- 153
+format.name$ -- 26
+if$ -- 398
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 4
-newline$ -- 18
-num.names$ -- 9
-pop$ -- 18
+missing$ -- 7
+newline$ -- 29
+num.names$ -- 15
+pop$ -- 27
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 32
 quote$ -- 0
-skip$ -- 48
+skip$ -- 69
 stack$ -- 0
-substring$ -- 72
-swap$ -- 16
-text.length$ -- 4
-text.prefix$ -- 1
+substring$ -- 108
+swap$ -- 18
+text.length$ -- 6
+text.prefix$ -- 3
 top$ -- 0
-type$ -- 20
+type$ -- 32
 warning$ -- 0
-while$ -- 13
-width$ -- 4
-write$ -- 43
+while$ -- 19
+width$ -- 6
+write$ -- 71

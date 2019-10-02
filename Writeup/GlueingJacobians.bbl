@@ -1,4 +1,9 @@
-\begin{thebibliography}{M{\"{u}}l10}
+\begin{thebibliography}{Mum07}
+
+\bibitem[Can87]{Cantor}
+David~G. Cantor.
+\newblock Computing in the {J}acobian of a hyperelliptic curve.
+\newblock {\em Math. Comp.}, 48(177):95--101, 1987.
 
 \bibitem[CF96]{CasselsFlynn}
 J.~W.~S. Cassels and E.~V. Flynn.
@@ -17,5 +22,14 @@ Gerhard Frey and Ernst Kani.
 Jan~Steffen M{\"{u}}ller.
 \newblock Explicit {K}ummer surface formulas for arbitrary characteristic.
 \newblock {\em LMS J. Comput. Math.}, 13:47--64, 2010.
+
+\bibitem[Mum07]{Mumford}
+David Mumford.
+\newblock {\em Tata lectures on theta. {II}}.
+\newblock Modern Birkh\"{a}user Classics. Birkh\"{a}user Boston, Inc., Boston,
+  MA, 2007.
+\newblock Jacobian theta functions and differential equations, With the
+  collaboration of C. Musili, M. Nori, E. Previato, M. Stillman and H. Umemura,
+  Reprint of the 1984 original.
 
 \end{thebibliography}
