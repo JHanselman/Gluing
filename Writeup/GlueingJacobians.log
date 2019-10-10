@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  2 OCT 2019 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 OCT 2019 13:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -574,62 +574,62 @@ Package: mathpazo 2005/04/12 PSNFSS-v9.2a Palatino w/ Pazo Math (D.Puga, WaS)
 (./GlueingJacobians.aux)
 \openout1 = `GlueingJacobians.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 146.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 147.
+LaTeX Font Info:    ... okay on input line 147.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 147.
+LaTeX Font Info:    ... okay on input line 147.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 147.
+LaTeX Font Info:    ... okay on input line 147.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 147.
+LaTeX Font Info:    ... okay on input line 147.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 147.
+LaTeX Font Info:    ... okay on input line 147.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 147.
+LaTeX Font Info:    ... okay on input line 147.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 147.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 146
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 147
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 146
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 147
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 146
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 147
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 146.
+LaTeX Font Info:    Try loading font information for U+msa on input line 147.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 146.
+LaTeX Font Info:    Try loading font information for U+msb on input line 147.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 146.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 147.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 146.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 147.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 146
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 147
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -701,34 +701,34 @@ Package caption Info: End \AtBeginDocument code.
 
 ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 154.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 155.
  (./GlueingJacobians.toc)
 \tf@toc=\write5
 \openout5 = `GlueingJacobians.toc'.
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 161.
+(Font)              scaled to size 12.50409pt on input line 162.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 161.
+(Font)              scaled to size 9.37807pt on input line 162.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 161.
+(Font)              scaled to size 7.29405pt on input line 162.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 161.
+(Font)              scaled to size 12.50409pt on input line 162.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 161.
+(Font)              scaled to size 9.37807pt on input line 162.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 161.
+(Font)              scaled to size 7.29405pt on input line 162.
  [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 181.
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 182.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 181.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 182.
  [2]
-LaTeX Font Info:    Try loading font information for U+fplmbb on input line 250
+LaTeX Font Info:    Try loading font information for U+fplmbb on input line 223
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ufplmbb.fd
@@ -736,10 +736,10 @@ File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ) [3]
 (./GlueingJacobians.bbl [4]) [5] (./GlueingJacobians.aux) ) 
 Here is how much of TeX's memory you used:
- 15783 strings out of 493089
- 313251 string characters out of 6134842
- 349870 words of memory out of 5000000
- 18743 multiletter control sequences out of 15000+600000
+ 15786 strings out of 493089
+ 313270 string characters out of 6134842
+ 349892 words of memory out of 5000000
+ 18746 multiletter control sequences out of 15000+600000
  34593 words of font info for 112 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  61i,19n,82p,801b,1014s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -757,7 +757,7 @@ blic/mathpazo/fplmri.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
 w/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palat
 ino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/upl
 ri8a.pfb>
-Output written on GlueingJacobians.pdf (5 pages, 134294 bytes).
+Output written on GlueingJacobians.pdf (5 pages, 134921 bytes).
 PDF statistics:
  72 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream

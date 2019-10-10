@@ -125,6 +125,7 @@
 \DeclareMathOperator{\Nm}{Nm}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
 
 \newcommand{\whinfty}{\wh{\infty}}
 
@@ -180,7 +181,7 @@ We denote by $\iota: C \to C$ the hyperelliptic involution that maps $(x,y) \map
 \subsection{Representing divisors}
 Let $C$ be a hyperelliptic curve, $\Div_k(C)$ be the group of $k$-divisors on $C$ \sss{define?}, $\Div^0_k(C)$ be the subgroup of divisors of degree $0$, and $\Jac(C)$ be its Jacobian variety. Denote by $\equiv$ the equivalence relation of linear equivalence on $\Div_k(C)$. We describe how points of $\Jac(C)$ can be represented as pairs of polynomials, as presented in \cite{Cantor} and \cite[\S1]{Mumford}.
 
-Given a point $P = (u,v)$ on $C$, then $\iota(P) = (u,-v)$ also lies on $C$. Since $\div(x - a) = P + \iota(P) - \wh{\infty}$, then $-P' \equiv P - \wh{\infty}$. Then each divisor $D \in \Div^0_k(C)$ is linearly equivalent to one the form \sss{TODO: fix this to make it work in the even model case, too}
+Given a point $P = (u,v)$ on $C$, then $\iota(P) = (u,-v)$ also lies on $C$. Since $\div(x - u) = P + \iota(P) - \wh{\infty}$, then $-P' \equiv P - \wh{\infty}$. Then each divisor $D \in \Div^0_k(C)$ is linearly equivalent to one the form \sss{TODO: fix this to make it work in the even model case, too}
 \begin{align} \label{semireduced}
 \sum_{i=1}^r P_i - r \whinfty
 \end{align}
@@ -202,10 +203,10 @@ $$
 \sss{Put some statement about a bijection between pairs of polynomials and semireduced divisors here?}
 
 \subsection{Embedding the Kummer variety}
-Let $X$ be a curve of genus $g$. Let $X^{(g)} = X^g/S_g$ be the $g^\text{th}$ symmetric power of $X$. Fixing a basepoint $P_0 \in X$, recall that the map
+Let $X$ be a curve of genus $g$ and let $\Sym^g(X) = X^g/S_g$ be the $g^\text{th}$ symmetric power of $X$. Fixing a divisor $D_0 \in \Div(X)$ of degree $g$, recall that the map
 \begin{align*}
-X^{(g)} &\to \Jac(X)\\
-\{P_1, \ldots, P_g\} &\mapsto [P_1] + \cdots + [P_g] - g[P_0]
+\Sym^g(X) &\to \Jac(X)\\
+\{P_1, \ldots, P_g\} &\mapsto [P_1] + \cdots + [P_g] - D_0
 \end{align*}
 is surjective.
 
@@ -219,15 +220,22 @@ X_2: y^2 = f(x)
 $$
 is a genus $2$ hyperelliptic curve over $k$.
 
-Let
+We now show how to realize the Kummer surface of $X_2$ as a quartic surface in $\P^3$, as described in \cite{Mueller} and \cite{CasselsFlynn}. Suppose $P_1 = (x,y)$ and $P_2 = (u,v)$ are affine points on $X_2$. Let
+\begin{align*}
+\kappa_1 &= 1\\
+\kappa_2 &= x+u\\
+\kappa_3 &= xu\\
+\kappa_4 &= \frac{F_0(x,u) - 2yv}{(x-u)^2}
+\end{align*}
+where
 \begin{align*}
 F_0(x,u) = 2 f_0 + f_1(x+u) + 2 f_2 xu + f_3(x+u)xu + 2 f_4(xu)^2 + f_5(x+u)xu + 2 f_6 (xu)^3 \, .
 \end{align*}
 
 The image of $\kappa$ is a quartic surface given by
-$$
+\begin{align} \label{eqn:kummer}
 K_2(\kappa_1, \kappa_2, \kappa_3) \kappa_4^2 + K_1(\kappa_1, \kappa_2, \kappa_3) \kappa_4 + K_0(\kappa_1, \kappa_2, \kappa_3) \, ,
-$$
+\end{align}
 where
 \begin{align*}
 K_2(\kappa_1, \kappa_2, \kappa_3) &= \kappa_2^2 - 4 \kappa_1 \kappa_3\\
@@ -239,7 +247,7 @@ K_0(\kappa_1, \kappa_2, \kappa_3) &=
 	&\qquad - 2  \kappa_1 \kappa_3^3 f_3 f_5 - 4 \kappa_2^4 f_0 f_6 - 4 \kappa_2^3 \kappa_3 f_1 f_6 - 4 \kappa_2^2 \kappa_3^2 f_2  f_6 -4 \kappa_2 \kappa_3^3 f_3 f_6 - 4 \kappa_3^4 f_4 f_6\\
 	&\qquad + \kappa_3^4 f_5^2 \, .
 \end{align*}
-
+Then the Kummer surface $K$ is given by equation (\ref{eqn:kummer}) and the map $\kappa = [\kappa_1 : \kappa_2 : \kappa_3 : \kappa_4]$ is the desired map $\Jac(X_2) \to K$.
 \section{Overview of method}
 
 Our construction proceeds as follows. We take as input an elliptic curve $X_1$ and a genus $2$ curve $X_2$ over a number field $k$ \sss{or more genenerally, any field? characteristic $\neq 2$?} given in Weierstrass form

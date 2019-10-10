@@ -5,5 +5,5 @@
 \contentsline {subsection}{\tocsubsection {}{II.3}{Embedding the Kummer variety}}{2}
 \contentsline {section}{\tocsection {}{III}{Overview of method}}{3}
 \contentsline {section}{\tocsection {}{IV}{Applications}}{4}
-\contentsline {section}{\tocsection {}{V}{Examples}}{4}
-\contentsline {section}{\tocsection {}{}{References}}{4}
+\contentsline {section}{\tocsection {}{V}{Examples}}{5}
+\contentsline {section}{\tocsection {}{}{References}}{5}
