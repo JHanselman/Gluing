@@ -2,8 +2,8 @@
 \contentsline {section}{\tocsection {}{II}{Background}}{1}
 \contentsline {subsection}{\tocsubsection {}{II.1}{Definitions and conventions}}{1}
 \contentsline {subsection}{\tocsubsection {}{II.2}{Representing divisors}}{2}
-\contentsline {subsection}{\tocsubsection {}{II.3}{Embedding the Kummer variety}}{2}
-\contentsline {section}{\tocsection {}{III}{Overview of method}}{3}
-\contentsline {section}{\tocsection {}{IV}{Applications}}{4}
+\contentsline {subsection}{\tocsubsection {}{II.3}{Embedding the Kummer variety}}{3}
+\contentsline {section}{\tocsection {}{III}{Overview of method}}{4}
+\contentsline {section}{\tocsection {}{IV}{Applications}}{5}
 \contentsline {section}{\tocsection {}{V}{Examples}}{5}
 \contentsline {section}{\tocsection {}{}{References}}{5}

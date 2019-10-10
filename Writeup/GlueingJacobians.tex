@@ -56,6 +56,7 @@
 \newtheorem{claim}[thm]{Claim}
 \newtheorem{example} [thm] {Example}
 \newtheorem{rem} [thm] {Remark}
+\newtheorem{eg} [thm] {Example}
 
 \newcommand{\C}{\mathbb C}
 \newcommand{\D}{\mathbf D}
@@ -201,6 +202,38 @@ $$
 b(x) = \sum_{i=1}^r  v_i \prod_{j \neq i} \frac{x - u_j}{u_i - u_j} \, .
 $$
 \sss{Put some statement about a bijection between pairs of polynomials and semireduced divisors here?}
+By construction $b(x)^2 \equiv f(x) \pmod{x - u_i}$ for each $i$ \sss{again, add statement about multiplicities}, so $a(x) \mid (b(x)^2 - f(x))$.
+
+The above observation allows us to construct an affine open patch of the Jacobian by giving explicit equations. As in the discussion following \cite[Proposition 1.2]{Mumford}, let $k[a_1, \ldots, a_g, b_1, \ldots, b_g]$ be the polynomial ring in $2g$ indeterminates, and define polynomials $a(x), b(x) \in k[a_1, \ldots, a_g, b_1, \ldots, b_g][x]$
+\begin{align*}
+a(x) &= x^g + a_1 x^{g-1} + \cdots + a_g\\
+b(x) &= b_1 x^{g-1} + \cdots + b_g \, .
+\end{align*}
+As above, we must have $b(x)^2 - f(x) \equiv 0 \pmod{a(x)}$. To ensure this, we divide $b(x)^2 - f(x)$ by $a(x)$, and then insist that the remainder be $0$ by setting all its coefficients $=0$. This realizes the affine open patch of $\Jac(X_2)$ in $\A^4$. We illustrate this with an example.
+
+\begin{eg}
+Consider the genus $2$ hyperelliptic curve
+$$
+X_2: y^2 = f(x)
+$$
+where
+$$
+f(x) = x (x-5) (x+2) (x-31) (x+15)(x-4) = x^6 - 23 x^5 - 351 x^4 + 3263 x^3 - 1570 x^2 - 18600 x
+$$
+Then
+$$
+a(x) = x^2 + a_1 x + a_0 \qquad \text{and} \qquad b(x) = b_1 x + b_0 \, .
+$$
+By long division with remainder, we find that
+\begin{align*}
+b(x)^2 - f(x) \equiv (-a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600) t - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \pmod{a(x)} \, .
+\end{align*}
+Thus an affine patch of the $\Jac(X_2)$ is the surface of $\A^4$ defined by
+\begin{align*}
+0 &= -a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600\\
+0 &= - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \, .
+\end{align*}
+\end{eg}
 
 \subsection{Embedding the Kummer variety}
 Let $X$ be a curve of genus $g$ and let $\Sym^g(X) = X^g/S_g$ be the $g^\text{th}$ symmetric power of $X$. Fixing a divisor $D_0 \in \Div(X)$ of degree $g$, recall that the map
