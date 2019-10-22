@@ -15,6 +15,7 @@
 \usepackage{fullpage}
 \usepackage{stmaryrd}
 \usepackage{subcaption}
+\usepackage{hyperref}
 %\usepackage{calc}
 %\usepackage{tikz}
 %\usetikzlibrary{arrows,calc,automata,shadows,backgrounds,positioning,intersections,fadings,decorations.pathreplacing,shapes,snakes, matrix}
@@ -209,7 +210,7 @@ The above observation allows us to construct an affine open patch of the Jacobia
 a(x) &= x^g + a_1 x^{g-1} + \cdots + a_g\\
 b(x) &= b_1 x^{g-1} + \cdots + b_g \, .
 \end{align*}
-As above, we must have $b(x)^2 - f(x) \equiv 0 \pmod{a(x)}$. To ensure this, we divide $b(x)^2 - f(x)$ by $a(x)$, and then insist that the remainder be $0$ by setting all its coefficients $=0$. This realizes the affine open patch of $\Jac(X_2)$ in $\A^4$. We illustrate this with an example.
+As above, we must have $b(x)^2 - f(x) \equiv 0 \pmod{a(x)}$. To ensure this, we divide $b(x)^2 - f(x)$ by $a(x)$, and then insist that the remainder be $0$ by setting all its coefficients $=0$. This realizes an affine open patch of $\Jac(X_2)$ as a subvariety of $\A^4$. We illustrate this with an example.
 
 \begin{eg}
 Consider the genus $2$ hyperelliptic curve
@@ -226,7 +227,8 @@ a(x) = x^2 + a_1 x + a_0 \qquad \text{and} \qquad b(x) = b_1 x + b_0 \, .
 $$
 By long division with remainder, we find that
 \begin{align*}
-b(x)^2 - f(x) \equiv (-a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600) t - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \pmod{a(x)} \, .
+b(x)^2 - f(x) &\equiv (-a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600) t\\
+	&\qquad - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \pmod{a(x)} \, .
 \end{align*}
 Thus an affine patch of the $\Jac(X_2)$ is the surface of $\A^4$ defined by
 \begin{align*}
@@ -317,6 +319,9 @@ By the classical theory of modular functions, the map $X(2) \to X(1)$, $\lambda 
 \end{proof}
 
 Thus the composite map in the above lemma is a rational function of degree $12$ in $\mu$. Let $j_1 = j(X_1)$. In order to find a value of $\mu$ that yields an elliptic curve $C_\mu$ isomorphic to our original curve $X_1$, we solve the equation $\varphi(\mu) = j_1$. The solutions $\mu$ to this equation may not lie in the ground field, so it may be necessary to base change our curve to an algebraic extension. \sss{I think in all the examples so far we've only needed quadratic extensions of the base field...} \sss{One more interesting note: I think in all the examples we've done so far, $\varphi(\mu) - j_1$ has an interesting factorization. The numerator is a product of quadratics, and the denominator is a product of linear factors squared. Is this expected?}
+
+\section{Comparison with analytic construction}
+The first author has also described a complex analytic method for glueing a genus $1$ and a genus $2$ curve along their $2$-torsion using period matrices. In this section we compare these two methods of glueing.
 
 \section{Applications}
 Constructing abelian three-folds with interesting torsion?
