@@ -218,23 +218,37 @@ $$
 X_2: y^2 = f(x)
 $$
 where
-$$
-f(x) = x (x-5) (x+2) (x-31) (x+15)(x-4) = x^6 - 23 x^5 - 351 x^4 + 3263 x^3 - 1570 x^2 - 18600 x
-$$
+%\begin{align*}
+%f(x) &= x (x-5) (x+2) (x-31) (x+15)(x-4)\\
+%	&= x^6 - 23 x^5 - 351 x^4 + 3263 x^3 - 1570 x^2 - 18600 x
+%\end{align*}
+\begin{align*}
+f(x) &= x (x-1) (x-2) (x-3) (x-4) (x-5)\\
+	&= x^6 - 15 x^5 + 85 x^4 - 225 x^3 + 274 x^2 - 120 x \, .
+\end{align*}
 Then
 $$
-a(x) = x^2 + a_1 x + a_0 \qquad \text{and} \qquad b(x) = b_1 x + b_0 \, .
+a(x) = x^2 + a_1 x + a_2 \qquad \text{and} \qquad b(x) = b_1 x + b_2 \, .
 $$
 By long division with remainder, we find that
+%\begin{align*}
+%b(x)^2 - f(x) &\equiv (-a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600) t\\
+%	&\qquad - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \pmod{a(x)} \, .
+%\end{align*}
 \begin{align*}
-b(x)^2 - f(x) &\equiv (-a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600) t\\
-	&\qquad - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \pmod{a(x)} \, .
+b(x)^2 - f(x) &\equiv  c_1 x + c_2 \pmod{a(x)}
 \end{align*}
-Thus an affine patch of the $\Jac(X_2)$ is the surface of $\A^4$ defined by
+where
 \begin{align*}
-0 &= -a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600\\
-0 &= - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \, .
+c_1 &= -a_1^5 - 15 a_1^4 + 4 a_1^3 a_2 - 85 a_1^3 + 45 a_1^2 a_2 - 225 a_1^2 - 3 a_1 a_2^2 + 170 a_1 a_2 + a_1 b_1^2 - 274 a_1\\
+	&\qquad \qquad - 15 a_2^2 + 225 a_2 - 2 b_1 b_2 - 120\\
+c_2 &= - a_1^4 a_2 - 15 a_1^3 a_2 + 3 a_1^2 a_2^2 - 85 a_1^2 a_2 + 30 a_1 a_2^2 - 225 a_1 a_2 - a_2^3 + 85 a_2^2 + a_2 b_1^2 - 274 a_2 - b_2^2
 \end{align*}
+Thus an affine patch of $\Jac(X_2)$ is the surface of $\A^4$ defined by $c_1 = c_2 = 0$.
+%\begin{align*}
+%0 &= -a_1^5 - 23 a_1^4 + 4 a_1^3 a_2 + 351 a_1^3 + 69 a_1^2 a_2 + 3263 a_1^2 - 3 a_1 a_2^2 - 702 a_1 a_2 + a_1 b_1^2 + 1570 a_1 - 23 a_2^2 - 3263 a_2 - 2 b_1 b_2 - 18600\\
+%0 &= - a_1^4 a_2 - 23 a_1^3 a_2 + 3 a_1^2 a_2^2 + 351 a_1^2 a_2 + 46 a_1 a_2^2 + 3263 a_1 a_2 - a_2^3 - 351 a_2^2 + a_2 b_1^2 + 1570 a_2 - b_2^2 \, .
+%\end{align*}
 \end{eg}
 
 \subsection{Embedding the Kummer variety}
