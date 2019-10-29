@@ -139,7 +139,7 @@ pts_y := Support(Divisor(ysq_leg_al));
 pts_y := [* RepresentativePoint(pt) : pt in pts_y *];
 K1 := Parent(pts_y[1][2]);
 K2 := Parent(pts_y[2][2]);
-poly2 := DefiningPolynomial(K2);  
+poly2 := DefiningPolynomial(K2);
 cs2 := Coefficients(poly2);
 R2 := PolynomialRing(K1);
 K3 := NumberField(R2!cs2);
@@ -147,7 +147,7 @@ E3 := ChangeRing(E_leg_al, K3);
 KE3 := FunctionField(E3);
 A_leg_al := CoordinateRing(AffinePatch(E_leg_al,1));
 A3<x3,y3> := CoordinateRing(AffinePatch(E3,1));
-mp3 := hom< A_leg_al -> A3 | [A3.1, A3.2]>; 
+mp3 := hom< A_leg_al -> A3 | [A3.1, A3.2]>;
 ysq_3 := (KE3!(mp3(Numerator(ysq_leg_al))))/(KE3!(mp3(Denominator(ysq_leg_al))));
 pts := Support(Divisor(ysq_3));
 // this is slow; might be worth computing the points beforehand and then pushing them forward along these isomorphisms
