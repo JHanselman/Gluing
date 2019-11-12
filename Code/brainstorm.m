@@ -102,16 +102,6 @@ lambda := CrossRatio(us[1],us[2],us[3],us[4]);
 R0<X> := PolynomialRing(fld);
 E_leg := EllipticCurve(X*(X-1)*(X - lambda));
 
-// See p. 47 of Silverman
-// doesn't seem any better: still have to base change
-/*
-// Caution: only works when j-invariant is not 0 or 1728.
-f_silv := T.2^2 + T.1*T.2 - (T.1^3 - 36/(value - 1728)*T.1 - 1/(value - 1728));
-C_silv := ProjectiveClosure(Curve(A2, f_silv));
-E_silv := EllipticCurve(C_silv);
-E_silv_fld := ChangeRing(E_silv, fld);
-*/
-
 // if not isomorphic, should be quadratic twist, so base change
 if not IsIsomorphic(E,E_leg) then
   _, new := IsQuadraticTwist(E, E_leg);

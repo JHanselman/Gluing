@@ -450,10 +450,10 @@ function FindPlanes(K,E,Q1,Q2,ysq)
 
   S:=[];
   for i:=1 to 4 do
-      Append(~S, Q1[i]);
+    Append(~S, Q1[i]);
   end for;
   for i:=1 to 4 do
-      Append(~S, Q2[i]);
+    Append(~S, Q2[i]);
   end for;
 
   M:=Matrix(L,2,4,S);
