@@ -1,6 +1,6 @@
 // Example for Jacobian equations
 
-load "Code/KummerFunctions.m";
+load "KummerFunctions.m";
 
 QQ := Rationals();
 R<x> := PolynomialRing(QQ);

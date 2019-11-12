@@ -1,7 +1,6 @@
-load "KummerFunctions.m";
-load "brainstorm-help.m";
-load "FunctionFinder.m"; // I don't see this being called below, so maybe it's unnecessary
-SetSeed(1);
+load "../KummerFunctions.m";
+//load "../brainstorm-help.m";
+//SetSeed(1);
 
 QQ := Rationals();
 RL := PolynomialRing(QQ);
@@ -10,39 +9,38 @@ L := FieldOfFractions(RL);
 // Define the curves we want to glue
 
 T<x,y> := PolynomialRing(QQ,2);
-
 // The elliptic curve
-g := (x - 1)*x*(x + 1)*(x + 2);
-//g := x^4 + x^3 + x^2 + x + 1;
+//g := (x - 1)*x*(x + 1)*(x + 2);
+g := x^4 + x^3 + x^2 + x + 1;
 g := g-y^2;
 A2:= AffineSpace(T);
-X1:=Scheme(A2,g);
-X1:=Curve(X1);
+X1:=Curve(A2,g);
 X1:=ProjectiveClosure(X1);
 X1:=EllipticCurve(X1);
 
 // The hyperelliptic curve
-// Roots need to be rational for Kummer to have 16 distinct points?
 R<x> := PolynomialRing(QQ);
-f := (x + 3)*(x + 1)*x*(x - 1)*(x - 3)*(x - 4);
-//f := (x-5)*(x+2)*(x-31)*(x+15)*x*(x+1);
-//f := (x-5)*(x+2)*(x-31)*(x+15)*x*(x-4); // sent this one to J. Sizzle
-//f := (x^4 + x^3 + x^2 + x + 1)*(x+2)*(x+3);
+f := (x^4 + x^3 + x^2 + x + 1)*(x+2)*(x+3);
+
+// base change to field where 2-torsion is defined
+facts := Factorization(f);
+facts :=[el[1] : el in facts];
+fields := [*NumberField(el) : el in facts*];
+KK := QQ;
+for i := 1 to #fields do
+  KK := Compositum(KK,fields[i]);
+end for;
+f := ChangeRing(f,KK);
+X1 := ChangeRing(X1,KK);
 
 K,ysq := CalculateKummer(f);
-//K_old,ysq_old := CalculateKummer_old(f);
 F:= DefiningEquation(K);
-
 S3<x1,x2,x3,x4> := PolynomialRing(L,4);
-
-Sing := SingularSubscheme(K);
-nodes := [ P : P in Points(Sing) ];
-
+nodes := SetToSequence(SingularPoints(K));
 O:=K![0,0,0,1];
 Remove(~nodes, Index(nodes,O)) ;
-
 print nodes;
-Q2:= nodes[2];
+Q2:= nodes[1];
 
 // Find all planes that go through the two nodes with a given j-invariant.
 j, C, ysq := FindPlanes(K,X1,O,Q2,ysq);
@@ -61,7 +59,7 @@ for poly in facts do
 end for;
 
 // Plug mu into the equation for the curve
-fld<nu> := fields[1];
+fld<nu> := fields[5];
 eqn := DefiningEquation(C);
 eqn := EvaluateField(eqn,[fld.1]);
 ysq := EvaluateField(Numerator(ysq),[fld.1]);

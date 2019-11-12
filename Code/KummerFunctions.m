@@ -54,12 +54,12 @@ function HyperellipticLines(E,Ps)
   //line4 := MakeLine(E,Q,-Q);
   //line5 := MakeLine(E,-Q,-Q_2);
   lines := [line1, line2, line3];
-  return lines, Q; 
+  return lines, Q;
 end function;
 
 /*
 function FunctionFieldToPolynomial(f)
-  
+
 end function;
 
 function MakeHyperellipticCurve(E,num,den);
@@ -88,7 +88,7 @@ function HyperellipticDivisor(E,Ps)
   x0 := D_2[1];
   print Support(Divisor(x-x0));
   f := line1*line2*line4/(line3*(x - x0)^2);
-  return f, line1, line2, line3, line4;  
+  return f, line1, line2, line3, line4;
 end function;
 */
 
@@ -373,7 +373,6 @@ function InterpolateJInvariant(f)
   R := Parent(f);
   K<lambda> := BaseRing(R);
   FFp := BaseRing(K);
-  
   f_ev := EvaluateField(f,[FFp!2]);
 
   
@@ -416,7 +415,7 @@ function ComputeBranchPoints(C)
   QQ := Rationals();
   A := Ambient(C);
   K := BaseRing(A);
-  R<x,y> := CoordinateRing(A); 
+  R<x,y> := CoordinateRing(A);
   KC<t> := FunctionField(C);
   f := DefiningEquation(C);
   fx := Derivative(f,1);
@@ -437,13 +436,12 @@ function FindjInvariantForParameter(C)
   printf "Computing ramification points of slope map\n";
   pts := ComputeBranchPoints(C);
   printf "Computing j-invariant\n";
-  lambda := CrossRatio(pts[1],pts[2],pts[3],pts[4]); 
+  lambda := CrossRatio(pts[1],pts[2],pts[3],pts[4]);
   j := jInvariantFromLegendre(lambda);
   return j;
 end function;
 
 function FindPlanes(K,E,Q1,Q2,ysq)
-	
   FFp := BaseRing(K);
   RL := PolynomialRing(FFp);
   L<mu> := FieldOfFractions(RL);
@@ -490,15 +488,13 @@ function FindPlanes(K,E,Q1,Q2,ysq)
   ysq := h_crv(ysq);
   //ysq := KC!ysq;
   //R2<xC, yC> := CoordinateRing(Ambient(C));
-  
-  
 
   Sing := SingularSubscheme(C);
   nodes2 := [ C ! P : P in Points(Sing) ];
-	    
+
 	print "The curve has singular points in:";
 	print nodes2;
-        
+
 	print "The curve (parametrized by mu) is:";
 	print C;
 
@@ -507,7 +503,6 @@ function FindPlanes(K,E,Q1,Q2,ysq)
   //S<x1,x2,x3> := Parent(F2);
 
   //return InterpolateJInvariant(F2);
-  
 
   ///Calculate the j-invariant of the family of elliptic curves that go through the singular points
   //T<x3> := PolynomialRing(L);
