@@ -1,6 +1,7 @@
 load "KummerFunctions.m";
 load "brainstorm-help.m";
-load "FunctionFinder.m"; // I don't see this being called below, so maybe it's unnecessary
+AttachSpec("spec");
+//load "FunctionFinder.m"; // I don't see this being called below, so maybe it's unnecessary
 SetSeed(1);
 
 QQ := Rationals();
@@ -30,7 +31,6 @@ f := (x + 3)*(x + 1)*x*(x - 1)*(x - 3)*(x - 4);
 //f := (x^4 + x^3 + x^2 + x + 1)*(x+2)*(x+3);
 
 K,ysq := CalculateKummer(f);
-//K_old,ysq_old := CalculateKummer_old(f);
 F:= DefiningEquation(K);
 
 S3<x1,x2,x3,x4> := PolynomialRing(L,4);
@@ -46,6 +46,9 @@ Q2:= nodes[2];
 
 // Find all planes that go through the two nodes with a given j-invariant.
 j, C, ysq := FindPlanes(K,X1,O,Q2,ysq);
+fields := jInvariantMatch(j,jInvariant(X1));
+fields, js := PolredjInvariants(fields);
+/*
 value := jInvariant(X1);
 j_num := Numerator(j - value);
 facts := Factorization(j_num);
@@ -59,12 +62,14 @@ for poly in facts do
     // maybe we should do Polredabs or OptimizedRepresentation to make the fields nicer
   end if;
 end for;
+*/
 
 // Plug mu into the equation for the curve
 fld<nu> := fields[1];
+j := js[1];
 eqn := DefiningEquation(C);
-eqn := EvaluateField(eqn,[fld.1]);
-ysq := EvaluateField(Numerator(ysq),[fld.1]);
+eqn := EvaluateField(eqn,[j]);
+ysq := EvaluateField(Numerator(ysq),[j]);
 C := Curve(AffineSpace(fld,2),eqn);
 KC := FunctionField(C);
 S2_aff := PolynomialRing(fld,2);

@@ -93,84 +93,76 @@ end function;
 */
 
 function CantorEquations(X);
-/* Gives the equations in the description a (x) = 0, y = b (x)
- * May not use usual parameter if uniformizer differs */
-// see Cantor's Computing in the Jacobian of a Hyperelliptic Curve for explanation of a(x), b(x)
+  /* Gives the equations in the description a (x) = 0, y = b (x)
+   * May not use usual parameter if uniformizer differs */
+  // see Cantor's Computing in the Jacobian of a Hyperelliptic Curve for explanation of a(x), b(x)
 
-g := Genus(X);
-f := DefiningEquations(AffinePatch(X, 1))[1];
-F := BaseRing(X);
-S := PolynomialRing(F, 2*g);
-T<t> := PolynomialRing(S);
-/* Names:
- * a1 is trace term before t^(g - 1), a_g is norm term before t^0,
- * b1 is term before t^(g - 1), bg is term before t^0 */
-varnames := [ Sprintf("a%o", i) : i in [1..g] ] cat [ Sprintf("b%o", i) : i in [1..g] ];
-AssignNames(~S, varnames);
+  g := Genus(X);
+  f := DefiningEquations(AffinePatch(X, 1))[1];
+  F := BaseRing(X);
+  S := PolynomialRing(F, 2*g);
+  T<t> := PolynomialRing(S);
+  /* Names:
+   * a1 is trace term before t^(g - 1), a_g is norm term before t^0,
+   * b1 is term before t^(g - 1), bg is term before t^0 */
+  varnames := [ Sprintf("a%o", i) : i in [1..g] ] cat [ Sprintf("b%o", i) : i in [1..g] ];
+  AssignNames(~S, varnames);
 
-/* Start with trace and end with norm */
-canpol := t^g + &+[ S.i * t^(g - i) : i in [1..g] ];
-print canpol;
-substpol := &+[ S.(g + i) * t^(g - i) : i in [1..g] ];
-print substpol;
-P := [t, substpol];
-print f;
-print P;
-print Evaluate(f,P);
-eqpol := Evaluate(f, P) mod canpol;
-print eqpol;
-return Coefficients(eqpol);
-
+  /* Start with trace and end with norm */
+  canpol := t^g + &+[ S.i * t^(g - i) : i in [1..g] ];
+  print canpol;
+  substpol := &+[ S.(g + i) * t^(g - i) : i in [1..g] ];
+  print substpol;
+  P := [t, substpol];
+  print f;
+  print P;
+  print Evaluate(f,P);
+  eqpol := Evaluate(f, P) mod canpol;
+  print eqpol;
+  return Coefficients(eqpol);
 end function;
 
 
 function EvaluateGen(pol, vals)
-
-if #vals eq 1 then
-    return Evaluate(pol, vals[1]);
-end if;
-return Evaluate(pol, vals);
-
+  if #vals eq 1 then
+      return Evaluate(pol, vals[1]);
+  end if;
+  return Evaluate(pol, vals);
 end function;
 
 
 function MonomialGen(R, exps);
-
-if #exps eq 1 then
+  if #exps eq 1 then
     return R.1^exps[1];
-end if;
-return Monomial(R, exps);
-
+  end if;
+  return Monomial(R, exps);
 end function;
 
 
 function EvaluateField(f, vals)
+  R := Parent(f);
+  n := Rank(R);
+  K := BaseRing(R);
 
-R := Parent(f);
-n := Rank(R);
-K := BaseRing(R);
 
+  K0 := Parent(vals[1]);
+  R0 := PolynomialRing(K0, n);
 
-K0 := Parent(vals[1]);
-R0 := PolynomialRing(K0, n);
-
-f0 := R0 ! 0;
-for mon in Monomials(f) do
-    coeff := MonomialCoefficient(f, mon);
-    num := Numerator(coeff);
-    den := Denominator(coeff);
-    num0 := EvaluateGen(num, vals);
-    den0 := EvaluateGen(den, vals);
-    coeff0 := num0/den0;
-    mon0 := MonomialGen(R0, Exponents(mon));
-    f0 +:= coeff0*mon0;
-end for;
-return f0;
-
+  f0 := R0 ! 0;
+  for mon in Monomials(f) do
+      coeff := MonomialCoefficient(f, mon);
+      num := Numerator(coeff);
+      den := Denominator(coeff);
+      num0 := EvaluateGen(num, vals);
+      den0 := EvaluateGen(den, vals);
+      coeff0 := num0/den0;
+      mon0 := MonomialGen(R0, Exponents(mon));
+      f0 +:= coeff0*mon0;
+  end for;
+  return f0;
 end function;
 
 function CalculateKummer(f)
-
   //Calculating the Jacobian, the Kummer and the map to the Kummer
   X:= HyperellipticCurve(f);
 
@@ -225,17 +217,13 @@ function CalculateKummer(f)
   K := Scheme(P3, F);
   print K;
 
-
   //Express b_1^2 and b1*b2 in terms of a1,a2 and b2^2.
-
-
   b2sq:=jeqs[1]+b2^2;
   b1b2:=jeqs[2]/2+b1*b2;
   b1sqcoeff:= Coefficient(b2sq+tr*b1b2,b1,2);
 
   temp := R!(kappa4*(tr^2-4*nm))-F0;
   temp := -temp/2 -(b2sq+tr*b1b2-b1sqcoeff*b1^2);
-
 
   KK<a1,a2,b1,b2>:= FieldOfFractions(R);
   b1sq:= temp/(nm+b1sqcoeff);
@@ -250,7 +238,6 @@ function CalculateKummer(f)
   S3<x1,x2,x3,x4>:=FieldOfFractions(SF3);
   h:= hom<KK -> S3 |[-x2,x3,0,0]>;
 
-
   func := (x4*h(tr^2-4*nm))-h(F0);
   func := -func/2 -h(b2sq+tr*b1b2);
   func:=SF3!(func/h(nm+b1sqcoeff));
@@ -264,12 +251,10 @@ function CalculateKummer(f)
 
   print func;
   print homfunc;
-
   return K,homfunc;
-
 end function;
 
-
+/*
 function CalculateKummer_old(f)
 
 //Calculating the Jacobian, the Kummer and the map to the Kummer
@@ -375,7 +360,7 @@ function InterpolateJInvariant(f)
   FFp := BaseRing(K);
   f_ev := EvaluateField(f,[FFp!2]);
 
-  
+
   R3<x,y,z> := Parent(f_ev);
   P3<x,y,z> := ProjectiveSpace(R3);
   print f_ev;
@@ -396,6 +381,7 @@ function InterpolateJInvariant(f)
 return 0;
 
 end function;
+*/
 
 function CrossRatio(z1,z2,z3,z4)
   // Compute the cross ratio of the four numbers z1, z2, z3, z4
@@ -428,8 +414,7 @@ function ComputeBranchPoints(C)
   ram_pts := Points(Ram) diff SingularPoints(Ram);
   branch_pts := [pt[2]/pt[1] : pt in ram_pts];
   return branch_pts;
-end function;  
-  
+end function;
 
 function FindjInvariantForParameter(C)
   // Wrapper
@@ -492,11 +477,10 @@ function FindPlanes(K,E,Q1,Q2,ysq)
   Sing := SingularSubscheme(C);
   nodes2 := [ C ! P : P in Points(Sing) ];
 
-	print "The curve has singular points in:";
-	print nodes2;
-
-	print "The curve (parametrized by mu) is:";
-	print C;
+  print "The curve has singular points in:";
+  print nodes2;
+  print "The curve (parametrized by mu) is:";
+  print C;
 
   //C := ProjectiveClosure(C);
   //F2 := DefiningEquations(C)[1];
@@ -511,7 +495,7 @@ function FindPlanes(K,E,Q1,Q2,ysq)
   //CM := ChangeRing(C, M);
   //print CM;
   // TODO: The following is very slow, probably b/c Magma trying to compute Weierstrass form. Instead compute j-invariant directly
-  
+
   //EM := EllipticCurve(CM, CM ! [1,2,M.1]);
   //printf "The elliptic curve is, %o\n\n", EM;
   j := FindjInvariantForParameter(C);
@@ -527,17 +511,43 @@ function FindPlanes(K,E,Q1,Q2,ysq)
   newK:= SplittingField(numj);
   roots:= Roots(numj, newK);
   */
-	/*	
+	/*
 	Planes:=[];
 	for r in roots do
                 Append(~Planes,Evaluate(H, r[1]));
 	end for;
-    
+
 	return Planes;
   */
   return j, C, ysq;
 end function;
 
+function jInvariantMatch(j,j0)
+  j_num := Numerator(j - j0);
+  facts := Factorization(j_num);
+  facts := [fact[1] : fact in facts];
+  fields := [* *];
+  for poly in facts do
+    if Degree(poly) eq 1 then
+      Append(~fields, Rationals());
+      // should really record the j, too...
+    else
+      Append(~fields,NumberField(poly));
+    end if;
+  end for;
+  return fields;
+end function;
+
+function PolredjInvariants(fields)
+  fields_red := [* *];
+  js_red := [* *];
+  for K in fields do
+    K_red, mp := Polredbestabs(K);
+    Append(~fields_red, K_red);
+    Append(~js_red, mp(K.1));
+  end for;
+  return fields_red, js_red;
+end function;
 
 // OLD
 
@@ -545,7 +555,7 @@ end function;
 function DefineSlopeMap(C)
   A := Ambient(C);
   K := BaseRing(A);
-  R<x,y> := CoordinateRing(A); 
+  R<x,y> := CoordinateRing(A);
   KC<t> := FunctionField(C);
   proj := KC!y/KC!x;
   return proj;
@@ -558,7 +568,7 @@ function BaseChangeSlopeMap(proj,F)
   C_F_aff := AffinePatch(C_F,1);
   KC_F<t> := FunctionField(C_F);
   A_F := Ambient(C_F_aff);
-  R<x,y> := CoordinateRing(A_F); 
+  R<x,y> := CoordinateRing(A_F);
   proj_F := KC_F!y/KC_F!x;
   return proj_F;
 end function;
@@ -589,7 +599,7 @@ function FindjInvariantForParameter(C)
     pts := ComputeRamificationPoints(proj);
   end if;
   printf "Computing j-invariant\n";
-  lambda := CrossRatio(pts[1],pts[2],pts[3],pts[4]); 
+  lambda := CrossRatio(pts[1],pts[2],pts[3],pts[4]);
   j := jInvariantFromLegendre(lambda);
   return j;
 end function;
