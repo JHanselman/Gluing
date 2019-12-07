@@ -77,6 +77,8 @@ S2_aff := PolynomialRing(fld,2);
 // Map ysq into the function field of C
 h_crv := hom< S2_aff -> KC | [KC.1, KC.2]>;
 ysq := h_crv(ysq);
+// I think this is the first place where we can compute the divisor of ysq
+// Then we could just push the points along instead of the function
 
 // Compute the two-torsion points on C to find equation of the form v^2 = (u-u1)(u-u2)(u-u3)(u-u4) for ui in us.
 us := ComputeBranchPoints(C);
@@ -157,6 +159,7 @@ v := KE3!(lines[1]*lines[2]/lines[3]);
 // find the function corresponding to the correct genus 3 curve
 // original function v might be off by a 2-torsion point
 // this is slow: computing IsPrincipal takes a while, I think
+// I think Jeroen said we could get rid of the IsPrincipal if we made another base extension...
 print "Finding function that yields correct curve...";
 KE3<x,y> := FunctionField(E3);
 vs := [v, v/x, v/(x-1), v/(x-lambda)];
@@ -201,7 +204,7 @@ assert Degree(phi) eq 1;
 */
 
 // find new curve using Riemann-Roch space
-RR, mp_RR := RiemannRochSpace(4*Divisor(Q) + 4*Divisor(T));
+RR, mp_RR := RiemannRochSpace(4*(Divisor(Q) + Divisor(T)));
 mons := [u^i : i in [0..4]] cat [u^i*v : i in [0..2]];
 cs_list := [];
 for mon in mons do
@@ -218,11 +221,12 @@ vsq_check := &+[vsq_cs[i]*mons[i] : i in [1..#mons]];
 assert vsq_check eq (v^2); // double-check
 
 // now make nice model of the genus 1 curve
-RUV<U,V> := PolynomialRing(BaseRing(Parent(v)),2);
+//RUV<U,V> := PolynomialRing(BaseRing(Parent(v)),2);
+RUV<U,V> := PolynomialRing(K3,2);
 mons := [U^i : i in [0..4]] cat [U^i*V : i in [0..2]];
 F := V^2;
 for i := 1 to #mons do
-  F -:= vsq_cs[i]*mons[i];
+  F -:= (RUV!vsq_cs[i])*mons[i];
 end for;
 F := F/LeadingCoefficient(F);
 X1_final := Curve(AffineSpace(BaseRing(RUV),2), F);
