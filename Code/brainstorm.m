@@ -48,21 +48,6 @@ Q2:= nodes[2];
 j, C, ysq := FindPlanes(K,X1,O,Q2,ysq);
 fields := jInvariantMatch(j,jInvariant(X1));
 fields, js := PolredjInvariants(fields);
-/*
-value := jInvariant(X1);
-j_num := Numerator(j - value);
-facts := Factorization(j_num);
-facts := [fact[1] : fact in facts];
-fields := [* *];
-for poly in facts do
-  if Degree(poly) eq 1 then
-    Append(~fields, Rationals());
-  else
-    Append(~fields,NumberField(poly));
-    // maybe we should do Polredabs or OptimizedRepresentation to make the fields nicer
-  end if;
-end for;
-*/
 
 // Plug mu into the equation for the curve
 fld<nu> := fields[1];

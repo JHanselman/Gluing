@@ -117,47 +117,14 @@ function FindPlanes(K,E,Q1,Q2,ysq)
   print "The curve (parametrized by mu) is:";
   print C;
 
-  //C := ProjectiveClosure(C);
-  //F2 := DefiningEquations(C)[1];
-  //S<x1,x2,x3> := Parent(F2);
-
-  //return InterpolateJInvariant(F2);
-
-  ///Calculate the j-invariant of the family of elliptic curves that go through the singular points
-  //T<x3> := PolynomialRing(L);
-  //f := Evaluate(F2, [1,2,x3]);
-  //M := FieldOfFractions(quo< T | f >);
-  //CM := ChangeRing(C, M);
-  //print CM;
-  // TODO: The following is very slow, probably b/c Magma trying to compute Weierstrass form. Instead compute j-invariant directly
-
-  //EM := EllipticCurve(CM, CM ! [1,2,M.1]);
-  //printf "The elliptic curve is, %o\n\n", EM;
   j := FindjInvariantForParameter(C);
   printf "with j-invariant %o\n", j;
 
-  // Find all the planes whose j-invariant is equal to the j-invariant of the elliptic  curve E
-  // ...this looks unfinished: currently this is done in brainstorm.m instead
-  value := jInvariant(E);
-  numj := Numerator(L ! (j - value));
-
-  //Redefine everything over the splitting field of j(E).
-  /*
-  newK:= SplittingField(numj);
-  roots:= Roots(numj, newK);
-  */
-	/*
-	Planes:=[];
-	for r in roots do
-                Append(~Planes,Evaluate(H, r[1]));
-	end for;
-
-	return Planes;
-  */
   return j, C, ysq;
 end function;
 
 function jInvariantMatch(j,j0)
+  // Find all the planes whose j-invariant is equal to j0
   j_num := Numerator(j - j0);
   facts := Factorization(j_num);
   facts := [fact[1] : fact in facts];
