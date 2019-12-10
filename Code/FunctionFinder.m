@@ -23,11 +23,6 @@ function HyperellipticLines(E,Ps)
   return lines, Q;
 end function;
 
-function jInvariantFromLegendre(lambda)
-  // Given the Legendre lambda invariant, compute the j-invariant of the corresponding elliptic curve
-  return 2^8*(lambda^2 - lambda + 1)^3/(lambda^2*(lambda-1)^2);
-end function;
-
 function ComputeBranchPoints(C)
   // Given the elliptic curve C, given as a plane quartic with two nodes, one at (0,0), compute the branch points of the map y/x, taking a pencil of lines through (0,0)
   // Input: Elliptic curve C

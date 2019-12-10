@@ -25,6 +25,11 @@ function CrossRatio(z1,z2,z3,z4)
   return (z3-z1)*(z4-z2)/((z3-z2)*(z4-z1));
 end function;
 
+function jInvariantFromLegendre(lambda)
+  // Given the Legendre lambda invariant, compute the j-invariant of the corresponding elliptic curve
+  return 2^8*(lambda^2 - lambda + 1)^3/(lambda^2*(lambda-1)^2);
+end function;
+
 function EvaluateGen(pol, vals)
   if #vals eq 1 then
       return Evaluate(pol, vals[1]);

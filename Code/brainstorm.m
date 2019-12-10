@@ -64,11 +64,11 @@ h_crv := hom< S2_aff -> KC | [KC.1, KC.2]>;
 ysq := h_crv(ysq);
 // I think this is the first place where we can compute the divisor of ysq
 // Then we could just push the points along instead of the function
+// Pushforward is also defined for divisors on curves if that's easier
 
 // Compute the two-torsion points on C to find equation of the form v^2 = (u-u1)(u-u2)(u-u3)(u-u4) for ui in us.
 us := ComputeBranchPoints(C);
 AC<x,y> := CoordinateRing(C);
-
 u_mp := KC!y/KC!x;
 vsq_mp := &*[u_mp - us[i] : i in [1..#us]];
 vsq_mp_div := Divisor(vsq_mp);
@@ -133,7 +133,7 @@ A_leg_al := CoordinateRing(AffinePatch(E_leg_al,1));
 A3<x3,y3> := CoordinateRing(AffinePatch(E3,1));
 mp3 := hom< A_leg_al -> A3 | [A3.1, A3.2]>;
 ysq_3 := (KE3!(mp3(Numerator(ysq_leg_al))))/(KE3!(mp3(Denominator(ysq_leg_al))));
-D_ysq_3 := Divisor(ysq_3);
+D_ysq_3 := Divisor(ysq_3); // can we just base change the divisor of ysq_leg_al?
 pts := Support(D_ysq_3);
 // this is slow; might be worth computing the points beforehand and then pushing them forward along these isomorphisms
 pts := pts[1..4]; // why the first 4 points?
@@ -142,6 +142,7 @@ lines, Q := HyperellipticLines(E3,pts);
 lines := [KE3!line : line in lines];
 // make function with divisor pts[1] + pts[2] + pts[3] + pts[4] - 2*(Q) - 2*(oo)
 v := KE3!(lines[1]*lines[2]/lines[3]);
+D_v := Divisor(lines[1]) + Divisor(lines[2]) - Divisor(lines[3]);
 // since Divisor(ysq_3) has mults 1, 1, 3, 3, 2, -4, we can use v to create a function
 // whose divisor D has all even mults, so D/2 has some hope of being principal
 
@@ -152,10 +153,17 @@ v := KE3!(lines[1]*lines[2]/lines[3]);
 print "Finding function that yields correct curve...";
 KE3<x,y> := FunctionField(E3);
 vs := [v, v/x, v/(x-1), v/(x-lambda)];
-D_diffs := [Divisor(v0) - D_ysq_3 : v0 in vs];
+oo := E3!0;
+//Ts := [E3!0, E3![0,0], E3![1,0], E3![lambda,0]];
+//D_diffs := [Divisor(v0) - D_ysq_3 : v0 in vs];
 for i := 1 to #vs do
-  D_div2 := D_diffs[i] div 2;
+  t0 := Cputime();
+  D_diff := Divisor(vs[i]) - D_ysq_3; // can we compute the divisor of vs[i] from the divisor of v? I think so.
+  //D_diff := D_v - 2*(Divisor(Ts[i]) - Divisor(oo)) - D_ysq_3;
+  D_div2 := D_diff div 2;
   princ_bool2, gen := IsPrincipal(D_div2);
+  t1 := Cputime();
+  printf "i = %o took %o secs\n", i, t1 - t0;
   if princ_bool2 then
     print "Success: divisor is principal!";
     print i;
