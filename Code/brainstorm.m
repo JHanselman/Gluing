@@ -1,7 +1,7 @@
-load "KummerFunctions.m";
-load "brainstorm-help.m";
 AttachSpec("spec");
-//load "FunctionFinder.m"; // I don't see this being called below, so maybe it's unnecessary
+load "KummerFunctions.m";
+load "brainstorm-basics.m";
+load "FunctionFinder.m";
 SetSeed(1);
 
 QQ := Rationals();
@@ -148,22 +148,26 @@ A_leg_al := CoordinateRing(AffinePatch(E_leg_al,1));
 A3<x3,y3> := CoordinateRing(AffinePatch(E3,1));
 mp3 := hom< A_leg_al -> A3 | [A3.1, A3.2]>;
 ysq_3 := (KE3!(mp3(Numerator(ysq_leg_al))))/(KE3!(mp3(Denominator(ysq_leg_al))));
-pts := Support(Divisor(ysq_3));
+D_ysq_3 := Divisor(ysq_3);
+pts := Support(D_ysq_3);
 // this is slow; might be worth computing the points beforehand and then pushing them forward along these isomorphisms
-pts := pts[1..4];
+pts := pts[1..4]; // why the first 4 points?
 pts := [RepresentativePoint(pt) : pt in pts];
 lines, Q := HyperellipticLines(E3,pts);
 lines := [KE3!line : line in lines];
+// make function with divisor pts[1] + pts[2] + pts[3] + pts[4] - 2*(Q) - 2*(oo)
 v := KE3!(lines[1]*lines[2]/lines[3]);
+// since Divisor(ysq_3) has mults 1, 1, 3, 3, 2, -4, we can use v to create a function
+// whose divisor D has all even mults, so D/2 has some hope of being principal
 
 // find the function corresponding to the correct genus 3 curve
 // original function v might be off by a 2-torsion point
 // this is slow: computing IsPrincipal takes a while, I think
-// I think Jeroen said we could get rid of the IsPrincipal if we made another base extension...
+// I think Jeroen might've said we could get rid of the IsPrincipal if we made another base extension...
 print "Finding function that yields correct curve...";
 KE3<x,y> := FunctionField(E3);
 vs := [v, v/x, v/(x-1), v/(x-lambda)];
-D_diffs := [Divisor(v0) - Divisor(ysq_3) : v0 in vs];
+D_diffs := [Divisor(v0) - D_ysq_3 : v0 in vs];
 for i := 1 to #vs do
   D_div2 := D_diffs[i] div 2;
   princ_bool2, gen := IsPrincipal(D_div2);
@@ -191,17 +195,6 @@ for el in b do
     u := el;
   end if;
 end for;
-
-// make the projective map (x,y) -> (u,v) and take its image as the new curve
-// this is slow...maybe use Riemann-Roch space instead:
-// pull monomials u^i*v*j into L(4*Q + 4*oo), u^i*v^j @@ mp_RR, to obtain change of basis matrix
-// then pull in v^2
-/*
-phi := ProjectiveMap([u,v,1]);
-X1_final_old := Image(phi);
-phi := Restriction(phi, E3, X1_final_old);
-assert Degree(phi) eq 1;
-*/
 
 // find new curve using Riemann-Roch space
 RR, mp_RR := RiemannRochSpace(4*(Divisor(Q) + Divisor(T)));
@@ -304,4 +297,13 @@ sing_pts_bar := [Cbar!pt : pt in sing_pts];
 sing_pts_crv := [mp_crv_bar(pt) : pt in sing_pts];
 */
 
-
+// make the projective map (x,y) -> (u,v) and take its image as the new curve
+// this is slow...maybe use Riemann-Roch space instead:
+// pull monomials u^i*v*j into L(4*Q + 4*oo), u^i*v^j @@ mp_RR, to obtain change of basis matrix
+// then pull in v^2
+/*
+phi := ProjectiveMap([u,v,1]);
+X1_final_old := Image(phi);
+phi := Restriction(phi, E3, X1_final_old);
+assert Degree(phi) eq 1;
+*/
