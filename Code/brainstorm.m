@@ -99,7 +99,12 @@ if not IsIsomorphic(E,E_leg) then
   _, new := IsQuadraticTwist(E, E_leg);
   fld2 := NumberField(X^2 - new);
   E_al := ChangeRing(E, fld2);
+  fld2_abs := AbsoluteField(fld2);
+  fld2_abs := Polredbestabs(fld2_abs);
+  IsIsomorphic(fld2, fld2_abs);
+  E_al := ChangeRing(E_al, fld2_abs);
   E_leg_al := ChangeRing(E_leg, fld2);
+  E_leg_al := ChangeRing(E_leg_al, fld2_abs);
   iso_bool, mp_leg := IsIsomorphic(E_al, E_leg_al);
   assert iso_bool;
 end if;
@@ -122,16 +127,25 @@ KC<x,y> := FunctionField(C);
 pts_y := Support(Divisor(ysq_leg_al));
 pts_y := [* RepresentativePoint(pt) : pt in pts_y *];
 K1 := Parent(pts_y[1][2]);
+K1_abs := AbsoluteField(K1);
+K1_abs := Polredbestabs(K1_abs);
 K2 := Parent(pts_y[2][2]);
+K2_abs := AbsoluteField(K2);
+K2_abs := Polredbestabs(K2_abs);
+/*
 poly2 := DefiningPolynomial(K2);
 cs2 := Coefficients(poly2);
 R2 := PolynomialRing(K1);
 K3 := NumberField(R2!cs2);
+*/
+comps := CompositeFields(K1_abs,K2_abs);
+K3 := comps[1];
 E3 := ChangeRing(E_leg_al, K3);
 KE3 := FunctionField(E3);
 A_leg_al := CoordinateRing(AffinePatch(E_leg_al,1));
 A3<x3,y3> := CoordinateRing(AffinePatch(E3,1));
 mp3 := hom< A_leg_al -> A3 | [A3.1, A3.2]>;
+// TODO: can't coerce into K3 for some reason...
 ysq_3 := (KE3!(mp3(Numerator(ysq_leg_al))))/(KE3!(mp3(Denominator(ysq_leg_al))));
 D_ysq_3 := Divisor(ysq_3); // can we just base change the divisor of ysq_leg_al?
 pts := Support(D_ysq_3);
@@ -154,12 +168,9 @@ print "Finding function that yields correct curve...";
 KE3<x,y> := FunctionField(E3);
 vs := [v, v/x, v/(x-1), v/(x-lambda)];
 oo := E3!0;
-//Ts := [E3!0, E3![0,0], E3![1,0], E3![lambda,0]];
-//D_diffs := [Divisor(v0) - D_ysq_3 : v0 in vs];
 for i := 1 to #vs do
   t0 := Cputime();
-  D_diff := Divisor(vs[i]) - D_ysq_3; // can we compute the divisor of vs[i] from the divisor of v? I think so.
-  //D_diff := D_v - 2*(Divisor(Ts[i]) - Divisor(oo)) - D_ysq_3;
+  D_diff := Divisor(vs[i]) - D_ysq_3;
   D_div2 := D_diff div 2;
   princ_bool2, gen := IsPrincipal(D_div2);
   t1 := Cputime();
