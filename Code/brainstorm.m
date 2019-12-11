@@ -95,13 +95,13 @@ R0<X> := PolynomialRing(fld);
 E_leg := EllipticCurve(X*(X-1)*(X - lambda));
 
 // if not isomorphic, should be quadratic twist, so base change
+// FIXME: except in case where j = 0 or 1728, where higher twists are possible
 if not IsIsomorphic(E,E_leg) then
   _, new := IsQuadraticTwist(E, E_leg);
   fld2 := NumberField(X^2 - new);
   E_al := ChangeRing(E, fld2);
   fld2_abs := AbsoluteField(fld2);
   fld2_abs := Polredbestabs(fld2_abs);
-  IsIsomorphic(fld2, fld2_abs);
   E_al := ChangeRing(E_al, fld2_abs);
   E_leg_al := ChangeRing(E_leg, fld2);
   E_leg_al := ChangeRing(E_leg_al, fld2_abs);
@@ -120,18 +120,36 @@ ysq_den_al := mp_al(Denominator(ysq_E));
 KE_al := FunctionField(E_al);
 
 ysq_E_al := KE_al!(ysq_num_al)/KE_al!(ysq_den_al);
-mp_leg;
 ysq_leg_al := Pushforward(mp_leg,ysq_E_al);
 
-KC<x,y> := FunctionField(C);
 pts_y := Support(Divisor(ysq_leg_al));
 pts_y := [* RepresentativePoint(pt) : pt in pts_y *];
 K1 := Parent(pts_y[1][2]);
 K1_abs := AbsoluteField(K1);
-K1_abs := Polredbestabs(K1_abs);
+K1_abs, mp1_abs := Polredbestabs(K1_abs);
 K2 := Parent(pts_y[2][2]);
 K2_abs := AbsoluteField(K2);
-K2_abs := Polredbestabs(K2_abs);
+K2_abs, mp2_abs := Polredbestabs(K2_abs);
+// base change to K1_abs
+/*
+h := hom< fld2_abs -> K1_abs | mp1_abs(K1!fld2_abs.1)>;
+h2 := hom< fld2_abs -> KE1_abs | h(fld2_abs.1)>;
+h2(fld2_abs.1);
+Parent(ysq_num);
+A2_abs := $1;
+hom< A2_abs -> KE1_abs | h2, [KE1_abs.1, KE1_abs.2]>;
+h_func := $1;
+h_func(ysq_num);
+*/
+h := hom< fld2_abs -> K1_abs | mp1_abs(K1!fld2_abs.1)>;
+E1_abs := ChangeRing(E_leg_al, K1_abs);
+KE1_abs := FunctionField(E1_abs);
+h2 := hom< fld2_abs -> KE1_abs | h(fld2_abs.1)>;
+A_leg_al := CoordinateRing(AffinePatch(E_leg_al,1));
+A1_abs := CoordinateRing(AffinePatch(E1_abs,1));
+//mp1_abs_func := hom< A_leg_al -> A1_abs | [A1_abs.1, A1_abs.2]>;
+mp1_abs_func := hom< A_leg_al -> KE1_abs | h2, [KE1_abs.1, KE1_abs.2]>;
+ysq_1_abs := (KE1_abs!(mp1_abs_func(Numerator(ysq_leg_al))))/(KE1_abs!(mp1_abs_func(Denominator(ysq_leg_al))));
 /*
 poly2 := DefiningPolynomial(K2);
 cs2 := Coefficients(poly2);
@@ -139,19 +157,26 @@ R2 := PolynomialRing(K1);
 K3 := NumberField(R2!cs2);
 */
 comps := CompositeFields(K1_abs,K2_abs);
-K3 := comps[1];
+// TODO: comps[1] is smaller (only degree 8), but pts[3] and pts[4] not defined over it
+K3 := comps[2];
+// should we Polredabs(K3)?
+/*
+K3_abs, mp3_abs := Polredbestabs(K3);
+K3_abs;
+X1_final;
+X1_final_abs := BaseChange(X1_final, mp3_abs);
+*/
 E3 := ChangeRing(E_leg_al, K3);
 KE3 := FunctionField(E3);
-A_leg_al := CoordinateRing(AffinePatch(E_leg_al,1));
 A3<x3,y3> := CoordinateRing(AffinePatch(E3,1));
-mp3 := hom< A_leg_al -> A3 | [A3.1, A3.2]>;
-// TODO: can't coerce into K3 for some reason...
-ysq_3 := (KE3!(mp3(Numerator(ysq_leg_al))))/(KE3!(mp3(Denominator(ysq_leg_al))));
+mp3 := hom< A1_abs -> A3 | [A3.1, A3.2]>;
+ysq_3 := (KE3!(mp3(Numerator(ysq_1_abs))))/(KE3!(mp3(Denominator(ysq_1_abs))));
 D_ysq_3 := Divisor(ysq_3); // can we just base change the divisor of ysq_leg_al?
 pts := Support(D_ysq_3);
 // this is slow; might be worth computing the points beforehand and then pushing them forward along these isomorphisms
 pts := pts[1..4]; // why the first 4 points?
-pts := [RepresentativePoint(pt) : pt in pts];
+//pts := [RepresentativePoint(pt) : pt in pts];
+pts := [*RepresentativePoint(pt) : pt in pts*];
 lines, Q := HyperellipticLines(E3,pts);
 lines := [KE3!line : line in lines];
 // make function with divisor pts[1] + pts[2] + pts[3] + pts[4] - 2*(Q) - 2*(oo)
@@ -166,7 +191,7 @@ D_v := Divisor(lines[1]) + Divisor(lines[2]) - Divisor(lines[3]);
 // I think Jeroen might've said we could get rid of the IsPrincipal if we made another base extension...
 print "Finding function that yields correct curve...";
 KE3<x,y> := FunctionField(E3);
-vs := [v, v/x, v/(x-1), v/(x-lambda)];
+vs := [v, v/x, v/(x-1), v/(x-K3!lambda)];
 oo := E3!0;
 for i := 1 to #vs do
   t0 := Cputime();
