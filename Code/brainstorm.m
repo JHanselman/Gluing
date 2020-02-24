@@ -101,15 +101,23 @@ if not IsIsomorphic(E,E_leg) then
   fld2 := NumberField(X^2 - new);
   E_al := ChangeRing(E, fld2);
   fld2_abs := AbsoluteField(fld2);
-  fld2_abs := Polredbestabs(fld2_abs);
-  E_al := ChangeRing(E_al, fld2_abs);
+  E_al := ChangeRing(E, fld2_abs);
+  fld2_best, mp2_best := Polredbestabs(fld2_abs);
+  P2_best := ProjectiveSpace(fld2_best,2);
+  //coerce_2 := Coercion(fld2, fld2_abs);
+  E_al := BaseChange(E_al, P2_best, mp2_best);
+  E_al := EllipticCurve(E_al, E_al![0,1,0]); // stupid Magma is taking a weird-ass map that negates y-coordinate! >:(
+  // might be easier just to coerce a-invariants
   E_leg_al := ChangeRing(E_leg, fld2);
   E_leg_al := ChangeRing(E_leg_al, fld2_abs);
+  E_leg_al := BaseChange(E_leg_al, P2_best, mp2_best);
+  E_leg_al := EllipticCurve(E_leg_al, E_leg_al![0,1,0]); // stupid Magma is taking a weird-ass map that negates y-coordinate! >:(
   iso_bool, mp_leg := IsIsomorphic(E_al, E_leg_al);
   assert iso_bool;
 end if;
 
 // map ysq into base-chaged curves
+// FIXME: more coercion nonsense to do
 A := CoordinateRing(AffinePatch(E,1));
 A_al := CoordinateRing(AffinePatch(E_al,1));
 mp_al := hom<A -> A_al | [A_al.1, A_al.2]>;
@@ -156,6 +164,7 @@ cs2 := Coefficients(poly2);
 R2 := PolynomialRing(K1);
 K3 := NumberField(R2!cs2);
 */
+// when polredabs-ing the compositum, can give it product of discriminants of the fields, which may help
 comps := CompositeFields(K1_abs,K2_abs);
 // TODO: comps[1] is smaller (only degree 8), but pts[3] and pts[4] not defined over it
 K3 := comps[2];
