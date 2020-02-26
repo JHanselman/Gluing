@@ -103,7 +103,8 @@ if not IsIsomorphic(E,E_leg) then
   //E_al := ChangeRing(E, fld2);
   fld2_abs := AbsoluteField(fld2);
   //E_al := ChangeRing(E, fld2_abs);
-  fld2_best, mp2_best := Polredbestabs(fld2_abs);
+  //fld2_best, mp2_best := Polredbestabs(fld2_abs);
+  fld2_best, mp2_best := Polredabs(fld2_abs : Best := true);
   /*
   P2_best := ProjectiveSpace(fld2_best,2);
   //coerce_2 := Coercion(fld2, fld2_abs);
@@ -148,10 +149,12 @@ pts_y := Support(Divisor(ysq_leg_best));
 pts_y := [* RepresentativePoint(pt) : pt in pts_y *];
 K1 := Parent(pts_y[1][2]);
 K1_abs := AbsoluteField(K1);
-K1_best, mp1_best := Polredbestabs(K1_abs);
+//K1_best, mp1_best := Polredbestabs(K1_abs);
+K1_best, mp1_best := Polredabs(K1_abs : Best := true);
 K2 := Parent(pts_y[2][2]);
 K2_abs := AbsoluteField(K2);
-K2_best, mp2_best := Polredbestabs(K2_abs);
+//K2_best, mp2_best := Polredbestabs(K2_abs);
+K2_best, mp2_best := Polredabs(K2_abs : Best := true);
 // base change to K1_best
 /*
 h := hom< fld2_abs -> K1_abs | mp1_abs(K1!fld2_abs.1)>;
@@ -181,7 +184,7 @@ K3 := NumberField(R2!cs2);
 // TODO: when polredabs-ing the compositum, can give it product of discriminants of the fields, which may help
 comps := CompositeFields(K1_best, K2_best);
 // TODO: comps[1] is smaller (only degree 8), but pts[3] and pts[4] not defined over it
-K3 := comps[2];
+K3<nu> := comps[2];
 // should we Polredabs(K3)?
 /*
 K3_abs, mp3_abs := Polredbestabs(K3);
@@ -275,6 +278,7 @@ for i := 1 to #mons do
 end for;
 F := F/LeadingCoefficient(F);
 X1_final := Curve(AffineSpace(BaseRing(RUV),2), F);
+A2<s,t> := Ambient(X1_final);
 // hmmm...commands like Genus(X1_final_new) and IsIrreducible(X1_final_new) just seem to hang...
 
 
@@ -285,7 +289,7 @@ G := Evaluate(F,[U,V^2]);
 //X3 := Curve(AffineSpace(BaseRing(X1_final),2),G);
 X3 := Curve(Ambient(X1_final),G);
 Genus(X3);
-I, W :=DixmierOhnoInvariants(G);
+I, W := DixmierOhnoInvariants(G);
 invs := WPSNormalize(W,I);
 print invs;
 
