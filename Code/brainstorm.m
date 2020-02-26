@@ -97,12 +97,14 @@ E_leg := EllipticCurve(X*(X-1)*(X - lambda));
 // if not isomorphic, should be quadratic twist, so base change
 // FIXME: except in case where j = 0 or 1728, where higher twists are possible
 if not IsIsomorphic(E,E_leg) then
-  _, new := IsQuadraticTwist(E, E_leg);
+  twist_bool, new := IsQuadraticTwist(E, E_leg);
+  assert twist_bool;
   fld2 := NumberField(X^2 - new);
-  E_al := ChangeRing(E, fld2);
+  //E_al := ChangeRing(E, fld2);
   fld2_abs := AbsoluteField(fld2);
-  E_al := ChangeRing(E, fld2_abs);
+  //E_al := ChangeRing(E, fld2_abs);
   fld2_best, mp2_best := Polredbestabs(fld2_abs);
+  /*
   P2_best := ProjectiveSpace(fld2_best,2);
   //coerce_2 := Coercion(fld2, fld2_abs);
   E_al := BaseChange(E_al, P2_best, mp2_best);
@@ -112,33 +114,45 @@ if not IsIsomorphic(E,E_leg) then
   E_leg_al := ChangeRing(E_leg_al, fld2_abs);
   E_leg_al := BaseChange(E_leg_al, P2_best, mp2_best);
   E_leg_al := EllipticCurve(E_leg_al, E_leg_al![0,1,0]); // stupid Magma is taking a weird-ass map that negates y-coordinate! >:(
-  iso_bool, mp_leg := IsIsomorphic(E_al, E_leg_al);
+  */
+  ainvs := aInvariants(E);
+  ainvs_abs := [fld2_abs!(fld2!el) : el in ainvs];
+  ainvs_best := [mp2_best(el) : el in ainvs_abs];
+  E_best := EllipticCurve(ainvs_best);
+  ainvs_leg := aInvariants(E_leg);
+  ainvs_leg_abs := [fld2_abs!(fld2!el) : el in ainvs_leg];
+  ainvs_leg_best := [mp2_best(el) : el in ainvs_leg_abs];
+  E_leg_best := EllipticCurve(ainvs_leg_best);
+  iso_bool, mp_leg := IsIsomorphic(E_best, E_leg_best);
   assert iso_bool;
 end if;
 
 // map ysq into base-chaged curves
-// FIXME: more coercion nonsense to do
 A := CoordinateRing(AffinePatch(E,1));
-A_al := CoordinateRing(AffinePatch(E_al,1));
-mp_al := hom<A -> A_al | [A_al.1, A_al.2]>;
+A_best := CoordinateRing(AffinePatch(E_best,1));
+coerce_2 := Coercion(fld,fld2);
+coerce_abs := Coercion(fld2,fld2_abs);
+coerce_best := Coercion(fld2_best, A_best);
+cs_map := coerce_2*coerce_abs*mp2_best*coerce_best;
+mp_best := hom<A -> A_best | cs_map, [A_best.1, A_best.2]>;
 
-ysq_num_al := mp_al(Numerator(ysq_E));
-ysq_den_al := mp_al(Denominator(ysq_E));
+ysq_num_best := mp_best(Numerator(ysq_E));
+ysq_den_best := mp_best(Denominator(ysq_E));
 
-KE_al := FunctionField(E_al);
+KE_best := FunctionField(E_best);
 
-ysq_E_al := KE_al!(ysq_num_al)/KE_al!(ysq_den_al);
-ysq_leg_al := Pushforward(mp_leg,ysq_E_al);
+ysq_E_best := KE_best!(ysq_num_best)/KE_best!(ysq_den_best);
+ysq_leg_best := Pushforward(mp_leg,ysq_E_best);
 
-pts_y := Support(Divisor(ysq_leg_al));
+pts_y := Support(Divisor(ysq_leg_best));
 pts_y := [* RepresentativePoint(pt) : pt in pts_y *];
 K1 := Parent(pts_y[1][2]);
 K1_abs := AbsoluteField(K1);
-K1_abs, mp1_abs := Polredbestabs(K1_abs);
+K1_best, mp1_best := Polredbestabs(K1_abs);
 K2 := Parent(pts_y[2][2]);
 K2_abs := AbsoluteField(K2);
-K2_abs, mp2_abs := Polredbestabs(K2_abs);
-// base change to K1_abs
+K2_best, mp2_best := Polredbestabs(K2_abs);
+// base change to K1_best
 /*
 h := hom< fld2_abs -> K1_abs | mp1_abs(K1!fld2_abs.1)>;
 h2 := hom< fld2_abs -> KE1_abs | h(fld2_abs.1)>;
@@ -149,23 +163,23 @@ hom< A2_abs -> KE1_abs | h2, [KE1_abs.1, KE1_abs.2]>;
 h_func := $1;
 h_func(ysq_num);
 */
-h := hom< fld2_abs -> K1_abs | mp1_abs(K1!fld2_abs.1)>;
-E1_abs := ChangeRing(E_leg_al, K1_abs);
-KE1_abs := FunctionField(E1_abs);
-h2 := hom< fld2_abs -> KE1_abs | h(fld2_abs.1)>;
-A_leg_al := CoordinateRing(AffinePatch(E_leg_al,1));
-A1_abs := CoordinateRing(AffinePatch(E1_abs,1));
+h := hom< fld2_best -> K1_best | mp1_best(K1!fld2_best.1)>;
+E1_best := ChangeRing(E_leg_best, K1_best);
+KE1_best:= FunctionField(E1_best);
+h2 := hom< fld2_best -> KE1_best | h(fld2_best.1)>;
+A_leg_best := CoordinateRing(AffinePatch(E_leg_best,1));
+A1_best := CoordinateRing(AffinePatch(E1_best,1));
 //mp1_abs_func := hom< A_leg_al -> A1_abs | [A1_abs.1, A1_abs.2]>;
-mp1_abs_func := hom< A_leg_al -> KE1_abs | h2, [KE1_abs.1, KE1_abs.2]>;
-ysq_1_abs := (KE1_abs!(mp1_abs_func(Numerator(ysq_leg_al))))/(KE1_abs!(mp1_abs_func(Denominator(ysq_leg_al))));
+mp1_best_func := hom< A_leg_best -> KE1_best | h2, [KE1_best.1, KE1_best.2]>;
+ysq_1_best := (KE1_best!(mp1_best_func(Numerator(ysq_leg_best))))/(KE1_best!(mp1_best_func(Denominator(ysq_leg_best))));
 /*
 poly2 := DefiningPolynomial(K2);
 cs2 := Coefficients(poly2);
 R2 := PolynomialRing(K1);
 K3 := NumberField(R2!cs2);
 */
-// when polredabs-ing the compositum, can give it product of discriminants of the fields, which may help
-comps := CompositeFields(K1_abs,K2_abs);
+// TODO: when polredabs-ing the compositum, can give it product of discriminants of the fields, which may help
+comps := CompositeFields(K1_best, K2_best);
 // TODO: comps[1] is smaller (only degree 8), but pts[3] and pts[4] not defined over it
 K3 := comps[2];
 // should we Polredabs(K3)?
@@ -175,11 +189,11 @@ K3_abs;
 X1_final;
 X1_final_abs := BaseChange(X1_final, mp3_abs);
 */
-E3 := ChangeRing(E_leg_al, K3);
+E3 := ChangeRing(E_leg_best, K3);
 KE3 := FunctionField(E3);
 A3<x3,y3> := CoordinateRing(AffinePatch(E3,1));
-mp3 := hom< A1_abs -> A3 | [A3.1, A3.2]>;
-ysq_3 := (KE3!(mp3(Numerator(ysq_1_abs))))/(KE3!(mp3(Denominator(ysq_1_abs))));
+mp3 := hom< A1_best -> A3 | [A3.1, A3.2]>;
+ysq_3 := (KE3!(mp3(Numerator(ysq_1_best))))/(KE3!(mp3(Denominator(ysq_1_best))));
 D_ysq_3 := Divisor(ysq_3); // can we just base change the divisor of ysq_leg_al?
 pts := Support(D_ysq_3);
 // this is slow; might be worth computing the points beforehand and then pushing them forward along these isomorphisms
@@ -268,7 +282,8 @@ X1_final := Curve(AffineSpace(BaseRing(RUV),2), F);
 //F := DefiningEquation(AffinePatch(X1_final,1));
 //RF<x,y> := Parent(F);
 G := Evaluate(F,[U,V^2]);
-X3 := Curve(AffineSpace(BaseRing(X1_final),2),G);
+//X3 := Curve(AffineSpace(BaseRing(X1_final),2),G);
+X3 := Curve(Ambient(X1_final),G);
 Genus(X3);
 I, W :=DixmierOhnoInvariants(G);
 invs := WPSNormalize(W,I);
