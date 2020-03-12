@@ -1,6 +1,6 @@
 // Change to point to necessary packages if running on different machine.
-AttachSpec("/Users/samschiavone/github/quartic_reconstruction/package/spec");
-AttachSpec("/Users/samschiavone/github/quartic_reconstruction/g3twists_v2-0/spec");
+//AttachSpec("/Users/samschiavone/github/quartic_reconstruction/package/spec");
+//AttachSpec("/Users/samschiavone/github/quartic_reconstruction/g3twists_v2-0/spec");
 
 function CantorEquations(X);
   /* Gives the equations in the description a (x) = 0, y = b (x)
