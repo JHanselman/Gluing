@@ -124,25 +124,17 @@ function jInvariantMatch(j,j0)
     Append(~fields, K);
     Append(~js, root);
     end for; 
-    //if Degree(poly) eq 1 then
-     // Append(~fields, Rationals());
-      // should really record the j, too...
-    //else
-     // Append(~fields,K);
-    //end if;
   end for;
   return fields,js;
 end function;
 
-function PolredjInvariants(fields)
+function PolredjInvariants(fields,js)
   fields_red := [* *];
   js_red := [* *];
-  for K in fields do
-    //K_red, mp := Polredbestabs(K);
-    //Append(~fields_red, K_red);
-    //Append(~js_red, mp(K.1));
-    Append(~fields_red, K);
-    Append(~fields, K.1);
+  for i in [1..#fields] do
+    K_red, mp := Polredbestabs(fields[i]);
+    Append(~fields_red, K_red);
+    Append(~js_red, mp(js[i]));
   end for;
   return fields_red, js_red;
 end function;
