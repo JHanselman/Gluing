@@ -43,7 +43,7 @@ function FindjInvariantForParameter(C)
 end function;
 
 //
-//Input: 
+//Input:
 //K: Equation of a Kummer surface that is isomorphic to Jac(Y2)/(<-1>) for some curve Y2 of genus 2.
 //Q1,Q2: Two distinct singular points on K
 //ysq: A function on K such that the function field of K adjoined with the square root of ysq gives us the function field of Jac(Y2).
@@ -123,7 +123,7 @@ function jInvariantMatch(j,j0)
    for root in roots do
     Append(~fields, K);
     Append(~js, root);
-    end for; 
+    end for;
     //if Degree(poly) eq 1 then
      // Append(~fields, Rationals());
       // should really record the j, too...
@@ -134,6 +134,7 @@ function jInvariantMatch(j,j0)
   return fields,js;
 end function;
 
+//TODO: uncomment
 function PolredjInvariants(fields)
   fields_red := [* *];
   js_red := [* *];
